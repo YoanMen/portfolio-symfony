@@ -1,3 +1,47 @@
-body {
-    background-color: skyblue;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-lexend: "Lexend", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Bold.ttf");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("../fonts/Lexend/Lexend-VariableFont_wght.ttf");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("../fonts/Lexend/Lexend-VariableFont_wght.ttf");
+  font-weight: bold;
+  font-display: swap;
+}
+
+h1,
+h2 {
+  font-family: var(--font-roboto);
+}
+
+p,
+label,
+li {
+  font-family: var(--font-lexend);
 }
