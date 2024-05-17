@@ -31,8 +31,11 @@ class Blog
     /**
      * @var Collection<int, BlogImage>
      */
-    #[ORM\OneToMany(targetEntity: BlogImage::class, mappedBy: 'blogID', orphanRemoval: true)]
+
+    #[ORM\OneToMany(targetEntity: BlogImage::class, mappedBy: 'blog', cascade: ['persist'], orphanRemoval: true)]
     private Collection $blogImages;
+
+
 
     public function __construct()
     {
@@ -104,7 +107,7 @@ class Blog
     {
         if (!$this->blogImages->contains($blogImage)) {
             $this->blogImages->add($blogImage);
-            $blogImage->setBlogID($this);
+            $blogImage->setBlog($this);
         }
 
         return $this;
@@ -114,8 +117,8 @@ class Blog
     {
         if ($this->blogImages->removeElement($blogImage)) {
             // set the owning side to null (unless already changed)
-            if ($blogImage->getBlogID() === $this) {
-                $blogImage->setBlogID(null);
+            if ($blogImage->getBlog() === $this) {
+                $blogImage->setBlog(null);
             }
         }
 

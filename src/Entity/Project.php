@@ -27,13 +27,6 @@ class Project
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
-
-    /**
-     * @var Collection<int, ProjectImage>
-     */
-    #[ORM\OneToMany(targetEntity: ProjectImage::class, mappedBy: 'projectID', orphanRemoval: true)]
-    private Collection $projectImages;
-
     /**
      * @var Collection<int, Link>
      */
@@ -46,11 +39,17 @@ class Project
     #[ORM\ManyToMany(targetEntity: Technology::class, mappedBy: 'projectID')]
     private Collection $technologies;
 
+    /**
+     * @var Collection<int, ProjectImage>
+     */
+    #[ORM\OneToMany(targetEntity: ProjectImage::class, mappedBy: 'project', cascade: ['persist'], orphanRemoval: true)]
+    private Collection $projectImages;
+
     public function __construct()
     {
-        $this->projectImages = new ArrayCollection();
         $this->links = new ArrayCollection();
         $this->technologies = new ArrayCollection();
+        $this->projectImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,35 +105,7 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProjectImage>
-     */
-    public function getProjectImages(): Collection
-    {
-        return $this->projectImages;
-    }
 
-    public function addProjectImage(ProjectImage $projectImage): static
-    {
-        if (!$this->projectImages->contains($projectImage)) {
-            $this->projectImages->add($projectImage);
-            $projectImage->setProjectID($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProjectImage(ProjectImage $projectImage): static
-    {
-        if ($this->projectImages->removeElement($projectImage)) {
-            // set the owning side to null (unless already changed)
-            if ($projectImage->getProjectID() === $this) {
-                $projectImage->setProjectID(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Link>
@@ -185,6 +156,36 @@ class Project
     {
         if ($this->technologies->removeElement($technology)) {
             $technology->removeProjectID($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectImage>
+     */
+    public function getProjectImages(): Collection
+    {
+        return $this->projectImages;
+    }
+
+    public function addProjectImage(ProjectImage $projectImage): static
+    {
+        if (!$this->projectImages->contains($projectImage)) {
+            $this->projectImages->add($projectImage);
+            $projectImage->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectImage(ProjectImage $projectImage): static
+    {
+        if ($this->projectImages->removeElement($projectImage)) {
+            // set the owning side to null (unless already changed)
+            if ($projectImage->getProject() === $this) {
+                $projectImage->setProject(null);
+            }
         }
 
         return $this;

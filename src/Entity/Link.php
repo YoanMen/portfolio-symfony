@@ -34,6 +34,9 @@ class Link
     #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'links')]
     private Collection $projectID;
 
+    #[ORM\Column(length: 60)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->projectID = new ArrayCollection();
@@ -114,5 +117,22 @@ class Link
         $this->projectID->removeElement($projectID);
 
         return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function __toString(): String
+    {
+        return $this->getName();
     }
 }
