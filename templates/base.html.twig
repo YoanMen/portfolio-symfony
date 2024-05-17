@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 	<head>
 		<meta charset="UTF-8">
 		<title>
@@ -16,6 +16,13 @@
 
 	</head>
 	<body>
-		{% block body %}{% endblock %}
-	</body>
-</html>
+		{% block header  %}{% endblock %}
+
+		<main class="min-h-screen"> {% block body %}{% endblock %}
+			</main>
+
+			{% include 'partials/_footer.html.twig' %}
+
+			<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+		</body>
+	</html>
