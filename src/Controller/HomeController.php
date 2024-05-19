@@ -2,21 +2,28 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AboutRepository;
+use App\Repository\BlogRepository;
+use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(AboutRepository $aboutRepository, ProjectRepository $projectRepository, BlogRepository $blogRepository): Response
     {
+
+        $about = $aboutRepository->findAll();
+        $projects = $projectRepository->findAll();
+        $blogs = $blogRepository->findAll();
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'about' => $about,
+            'projects' => $projects,
+            'blogs' => null
+
         ]);
     }
 }

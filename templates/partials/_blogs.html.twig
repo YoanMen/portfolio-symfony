@@ -1,0 +1,24 @@
+<section name="blog" class="max-w-7xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color border-[1px]">
+	<h2 class="text-white text-2xl flex items-center gap-2 mb-2">
+		<div class="text-white">
+			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="currentColor" d="M7 17h7v-2H7zm0-4h10v-2H7zm0-4h10V7H7zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zM5 5v14z"/></svg>
+		</div>
+		Blog
+	</h2>
+
+	{# LOADING SPIN #}
+	<div id="load-blogs" class="size-10 text-blue mx-auto	hidden">
+		<svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+			<g fill="currentColor"><path fill-rule="evenodd" d="M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14m0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" clip-rule="evenodd" opacity="0.2"/><path d="M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7z"/></g>
+		</svg>
+	</div>
+	{# BLOG CONTAINER #}
+	<div name="blog-container" id="blog-container" class="flex flex-col gap-6 "></div>
+
+	{# PAGINATION #}
+	<div id="pagination-blog" class="text-blue  w-full pt-4 flex flex-wrap gap-1  justify-center items-center "></div>
+</section>
+
+{% block script %}
+	<script src="{{ asset("scripts/blog.js") }}"></script>
+{% endblock %}

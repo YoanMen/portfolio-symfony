@@ -13,6 +13,19 @@
   --font-color--secondary: #e5e5e5;
 }
 
+.carousel::-webkit-scrollbar {
+  background: transparent;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: var(--blue-color);
+  border-radius: 15px;
+}
+
 .bg-secondary {
   background-color: var(--bg-color--secondary);
 }
@@ -84,6 +97,7 @@ p,
 label,
 li {
   font-family: var(--font-lexend);
+  font-weight: 300;
 }
 
 @layer components {

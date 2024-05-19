@@ -4,13 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Blog;
 use App\Form\BlogImageType;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class BlogCrudController extends AbstractCrudController
 {
@@ -48,9 +48,26 @@ class BlogCrudController extends AbstractCrudController
             CollectionField::new('blogImages', 'Ajouter des images')
                 ->setEntryType(BlogImageType::class)->onlyOnForms(),
 
-            DateField::new('createdAt', 'Crée le')->hideOnForm(),
-            DateField::new('updatedAt', 'Modifier le ')->hideOnForm(),
+
 
         ];
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $entityInstance->setCreatedAt(new \DateTimeImmutable());
+        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
+    }
+
+
+    public function updateEntity(EntityManagerInterface $entityManager,  $entityInstance): void
+    {
+
+        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
+
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
     }
 }

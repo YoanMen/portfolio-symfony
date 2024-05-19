@@ -37,6 +37,9 @@ class Link
     #[ORM\Column(length: 60)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 40)]
+    private ?string $label = null;
+
     public function __construct()
     {
         $this->projectID = new ArrayCollection();
@@ -134,5 +137,17 @@ class Link
     public function __toString(): String
     {
         return $this->getName();
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): static
+    {
+        $this->label = $label;
+
+        return $this;
     }
 }

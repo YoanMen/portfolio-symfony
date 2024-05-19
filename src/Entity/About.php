@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AboutRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AboutRepository::class)]
 class About
@@ -12,9 +13,11 @@ class About
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['about.index'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['about.index'])]
     private ?string $description = null;
 
     #[ORM\Column]

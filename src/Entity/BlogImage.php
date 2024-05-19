@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BlogImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: BlogImageRepository::class)]
@@ -53,6 +54,7 @@ class BlogImage
         return $this->imageFile;
     }
 
+    #[Groups('blog.index')]
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;

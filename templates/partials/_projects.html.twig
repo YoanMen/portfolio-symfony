@@ -1,0 +1,67 @@
+<section name="projects" class="max-w-7xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color border-[1px]">
+	<h2 class="text-white text-2xl flex items-center gap-2 mb-2">
+		<div class="text-white">
+			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="currentColor" d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5c-1.65 0-3.35.3-4.75 1.05c-.1.05-.15.05-.25.05c-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1c1.11-.35 2.33-.5 3.5-.5c1.95 0 4.05.4 5.5 1.5c1.45-1.1 3.55-1.5 5.5-1.5c1.17 0 2.39.15 3.5.5c.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5c-.1 0-.15 0-.25-.05c-1.4-.75-3.1-1.05-4.75-1.05c-1.7 0-4.15.65-5.5 1.5m-1-14c-1.36-.6-3.16-1-4.5-1c-1.2 0-2.4.15-3.5.5v11.5c1.1-.35 2.3-.5 3.5-.5c1.34 0 3.14.4 4.5 1zM13 19c1.36-.6 3.16-1 4.5-1c1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5c-1.34 0-3.14.4-4.5 1z"/></svg>
+		</div>
+		Projects
+	</h2>
+	<p name="introduction" class="text-white mb-4">during my parcours i have created some projets, let's me show you somes of
+	</p>
+	<div name="article-container" class="flex flex-col gap-6 ">
+		{% for project in projects %}
+			<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5]">
+				<div class="flex justify-between">
+					<h3 class="text-blue font-bold text-xl mb-2">
+						{{ project.name }}
+					</h3>
+					<div class="text-white arrow-js ">
+						<svg class="arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
+							<path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
+						</svg>
+					</div>
+				</div>
+				{# LINKS #}
+				<ul name="links" class="flex gap-2 pb-2">
+
+					{% for link in project.links %}
+						<li>
+							<a class="link btn-primary  max-w-max bg-secondary text-white" href=" {{ link.path }} " target="_blank">
+								<div class="text-white">
+									{{ link.icon | raw }}
+								</div>
+								{{ link.label }}
+							</a>
+						</li>
+					{% endfor %}
+
+				</ul>
+				{# TECHNOLOGIES #}
+				<ul name="technologies" class="flex gap-2">
+
+					{% for technology in project.technologies %}
+						<li class="text-white text-sm font-[200] flex gap-1 items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="{{technology.color}}" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
+							{{ technology.name }}
+						</li>
+					{% endfor %}
+				</ul>
+
+				{# DETAIL #}
+				<div class="hidden detail pb-4">
+					<hr class="border-color my-2">
+					<div name="project content" class="text-white">
+						{{ project.detail | raw }}
+					</div>
+
+					{% for images in project.projectImages%}
+						<hr class="border-color my-2">
+						<div class="carousel flex gap-1 overflow-hidden overflow-x-scroll pt-2 pb-6">
+							<img class="image h-64 object-cover select-none mx-auto" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
+						{% endfor %}
+					</div>
+				</div>
+			</article>
+		{% endfor %}
+
+	</div>
+</section>

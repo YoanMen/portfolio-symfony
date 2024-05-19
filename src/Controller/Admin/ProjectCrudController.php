@@ -8,7 +8,6 @@ use App\Form\ProjectImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -41,8 +40,7 @@ class ProjectCrudController extends AbstractCrudController
             TextEditorField::new('detail', 'Description')->onlyOnForms()
                 ->setNumOfRows(15)
                 ->setColumns(15),
-            DateField::new('createdAt', 'Crée le')->hideOnForm(),
-            DateField::new('updatedAt', 'Modifier le ')->hideOnForm(),
+
             AssociationField::new('links', 'Liens externe')
                 ->setFormTypeOptions([
                     'by_reference' => false,
@@ -55,6 +53,7 @@ class ProjectCrudController extends AbstractCrudController
                     'multiple' => true,
                     'choice_label' => 'name',
                 ]),
+            AssociationField::new('projectImages', 'images')->onlyOnIndex(),
             CollectionField::new('projectImages', 'Ajouter des images')
                 ->setEntryType(ProjectImageType::class)->onlyOnForms()
 

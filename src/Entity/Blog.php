@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\BlogRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BlogRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
 class Blog
@@ -14,15 +15,21 @@ class Blog
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('blog.index')]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 120)]
+    #[Groups('blog.index')]
+
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('blog.index')]
     private ?string $detail = null;
 
     #[ORM\Column]
+    #[Groups('blog.index')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
@@ -33,6 +40,7 @@ class Blog
      */
 
     #[ORM\OneToMany(targetEntity: BlogImage::class, mappedBy: 'blog', cascade: ['persist'], orphanRemoval: true)]
+    #[Groups('blog.index')]
     private Collection $blogImages;
 
 

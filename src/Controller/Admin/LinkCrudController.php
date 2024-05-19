@@ -32,6 +32,8 @@ class LinkCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'nom')->setColumns(3),
+            TextField::new('label', 'label')->setColumns(3),
+
             UrlField::new('path', 'lien'),
             TextareaField::new('icon', 'code SVG de l\'icône ')->setColumns(15)->setNumOfRows(25)->onlyOnForms(),
         ];
