@@ -1,7 +1,8 @@
-import { setTabInteractive } from "./sectionTab.js";
+import { TabManager } from "./tabManager.js";
 
 window.onload = () => {
   // Get blog posts
+  const tabManager = new TabManager();
   const blogsContainer = document.querySelector("#blog-container");
   const loadBlogs = document.querySelector("#load-blogs");
   const pagination = document.querySelector("#pagination-blog");
@@ -17,7 +18,7 @@ window.onload = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
-      .catch(() => console.error("Error get blogs"));
+      .catch(() => alert.error("Error get blogs"));
 
     loadBlogs.classList.toggle("hidden");
 
@@ -33,7 +34,6 @@ window.onload = () => {
     data.forEach((blog) => {
       // set image to blog
       function setImages() {
-        console.log(blog.blogImages.length);
         if (blog.blogImages.length == 0) return "";
 
         let content = `<hr class="border-color my-2">
@@ -75,7 +75,7 @@ window.onload = () => {
 
     blogsContainer.innerHTML = content;
 
-    setTabInteractive();
+    tabManager.setTabInteractive();
   }
 
   async function setPagination(page, maxPage) {

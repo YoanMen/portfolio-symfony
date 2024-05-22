@@ -105,3 +105,24 @@ li {
     @apply flex items-center gap-2 rounded border-[1px] p-[2px] px-1 hover:border-solid border-white border-opacity-0  hover:border-opacity-[0.3];
   }
 }
+
+.fade {
+  animation: fade linear 0.2s;
+}
+
+.fade-right--anime {
+  animation: fade-right ease-in-out 0.15s;
+}
+
+.fade-left--anime {
+  animation: fade-left ease-in-out 0.15s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

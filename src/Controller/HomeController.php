@@ -15,7 +15,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(AboutRepository $aboutRepository, ProjectRepository $projectRepository): Response
     {
-
         $about = $aboutRepository->findAll();
         $projects = $projectRepository->findAll();
 

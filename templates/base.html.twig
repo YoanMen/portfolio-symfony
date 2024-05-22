@@ -2,6 +2,8 @@
 <html lang='en'>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -18,12 +20,14 @@
 	<body>
 		{% block header  %}{% endblock %}
 
-		<main class="min-h-screen"> {% block body %}{% endblock %}
+		<main class="min-h-screen "> {% block main %}{% endblock %}
 			</main>
 
 			{% include 'partials/_footer.html.twig' %}
 
 
-			{% block script  %}{% endblock %}
 		</body>
+		{% block scripts  %}
+			<script src="{{ asset("scripts/menuMarker.js") }}"></script>
+		{% endblock %}
 	</html>

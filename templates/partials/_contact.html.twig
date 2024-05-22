@@ -1,4 +1,4 @@
-<section name="contact" class="max-w-7xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color  border-[1px]">
+<section name="contact" id="contact" class="section max-w-7xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color  border-[1px]">
 	<h2 class="text-white text-2xl flex items-center gap-2 mb-2">
 		<div class="text-white">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24">
@@ -10,6 +10,11 @@
 	<div class="text-white">
 
 		{{ form_start(contactForm) }}
+
+
+		{{ form_row( contactForm.name) }}
+		{{ form_row( contactForm.email) }}
+		{{ form_row( contactForm.contactType) }}
 
 		{{ form_end(contactForm) }}
 
