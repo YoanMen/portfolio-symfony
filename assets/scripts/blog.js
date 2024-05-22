@@ -49,7 +49,7 @@ window.onload = () => {
 
       const date = new Date(blog.createdAt);
 
-      content += `<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5]">
+      content += `<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5] hover:bg-black hover:bg-opacity-5 transition-all duration-150 ease-in-out">
                   <div class="flex justify-between">
                     <h3 class="text-blue font-bold text-xl mb-2">
                       ${blog.name}

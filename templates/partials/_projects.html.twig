@@ -9,7 +9,7 @@
 	</p>
 	<div name="article-container" class="flex flex-col gap-6 ">
 		{% for project in projects %}
-			<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5]">
+			<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5] hover:bg-black hover:bg-opacity-5 transition-all duration-150 ease-in-out">
 				<div class="flex justify-between">
 					<h3 class="text-blue font-bold text-xl mb-2">
 						{{ project.name }}
