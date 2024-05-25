@@ -1,4 +1,4 @@
-<section name="contact" id="contact" class="section max-w-7xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color  border-[1px]">
+<section name="contact" id="contact" class="section max-w-7xl w-full mx-auto  mt-20 xl:rounded  p-4 border-color  border-[1px] mb-20">
 	<h2 class="text-white text-2xl flex items-center gap-2 mb-2">
 		<div class="text-white">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24">
@@ -8,18 +8,47 @@
 		Contact
 	</h2>
 	<div class="text-white">
+		<div class="flex gap-4 max-md:flex-col ">
+			<div
+				class="border-color rounded-sm	 border-[1px] p-4  text-white max-md:w-full w-1/2 flex  flex-col justify-arounsd">
+				<!-- text contact -->
+				<div>
+					<p>Feel free to get in touch with me to discuss exciting projects, professional collaborations, or simply to exchange ideas.
+						<br>
+						I'm always open to opportunities and meaningful conversations. Looking forward to hearing from you soon!
+					</p>
+					<div class="text-black opacity-5  max-md:hidden">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512">
+							<path fill="currentColor" d="M488 348.78h-70.24l-15.1 87.44l-48.78-87.44H169v-50h190v-157h129zm-145-273v207H158.13l-48.79 87.47l-15.11-87.47H24v-207zM136.724 215.324c0-10.139-12.257-15.214-19.425-8.046s-2.093 19.426 8.046 19.426c6.285 0 11.38-5.095 11.38-11.38zm60.945 0c-.068-10.12-12.32-15.122-19.452-7.943c-7.131 7.18-2.047 19.399 8.073 19.399c6.314 0 11.422-5.141 11.38-11.456zm60.945 0c0-10.139-12.257-15.214-19.425-8.046s-2.093 19.426 8.046 19.426c6.284 0 11.38-5.095 11.38-11.38z"/>
+						</svg>
+					</div>
+				</div>
 
-		{{ form_start(contactForm) }}
+			</div>
+			<!-- contact form  -->
+			<div class=" p-4 max-md:w-full w-2/4 h-full ">
+				{{ form_start(contactForm, {'attr': {'id': 'contact-form'}}) }}
+				<div class="grid grid-cols-2 gap-2 w-full max-md:grid-cols-1  ">
+					{{ form_row(contactForm.name) }}
+					{{ form_row(contactForm.email) }}
+				</div>
+				{{ form_row( contactForm.contactType) }}
+				{{ form_row( contactForm.message) }}
 
+				<div class="grid grid-cols-3 gap-2 w-full max-md:grid-cols-1 ">
+					<label class="flex gap-1  col-span-2  " for="{{ contactForm.agreeTerms.vars.id}}">
+						{{ form_row( contactForm.agreeTerms) }}
+						<p class="text-xs ">
+							By checking this box, I consent to having my data sent via email. This information will only be used to contact me back regarding my inquiry and will not be stored or shared with any third parties
+						</p>
+					</label>
+					{{ form_row( contactForm.save) }}
+				</div>
+				{{ form_end(contactForm) }}
 
-		{{ form_row( contactForm.name) }}
-		{{ form_row( contactForm.email) }}
-		{{ form_row( contactForm.contactType) }}
-		{{ form_row( contactForm.message) }}
-		{{ form_row( contactForm.agreeTerms) }}
-		{{ form_row( contactForm.save) }}
-
-		{{ form_end(contactForm) }}
-
+			</div>
+		</div>
 	</div>
+
+
 </section>

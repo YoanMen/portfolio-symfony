@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
+    const name = document.querySelector("#contact_name").value;
+    const email = document.querySelector("#contact_email").value;
+    const message = document.querySelector("#contact_message").value;
+    const contactType = document.querySelector("#contact_contactType").value;
 
     const r = await fetch("/api/contact", {
       method: "POST",
-      body: formData,
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ name, email, message, contactType }),
     })
       .then((response) => response.json())
       .catch((error) => console.log(error));
@@ -37,10 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       submitBut.classList.add("opacity-50");
 
-      // disable send button
       submitBut.disabled = true;
-
-      // add alert message
       const successText = document.createElement("p");
       successText.classList.add("text-green-400", "text-lg", "alert");
       successText.innerText =

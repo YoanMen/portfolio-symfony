@@ -39,9 +39,8 @@ class AboutCrudController extends AbstractCrudController
                 'css' => [
                     'attachment' => 'admin_file_field_attachment',
                 ],
-            ])
-                ->onlyWhenUpdating()
-                ->setColumns(12)->setNumOfRows(25),
+            ])->onlyWhenUpdating()
+                ->setColumns(12)->setNumOfRows(25)
         ];
     }
 

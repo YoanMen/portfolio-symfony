@@ -10,7 +10,33 @@
   --bg-color--secondary: #010409;
   --border-color: #30363d;
   --blue-color: #2276f5;
-  --font-color--secondary: #e5e5e5;
+  --font-color: #e5e5e5;
+}
+
+.light-mode {
+  --bg-color: white;
+  --bg-color--secondary: #f6f8faff;
+  --border-color: #dae0e6ff;
+  --blue-color: #2276f5;
+  --font-color: black;
+}
+p,
+div,
+label,
+li,
+h1,
+h2,
+h3,
+h4 {
+  color: var(--font-color);
+}
+
+.text-color {
+  color: var(--font-color);
+}
+.bg-avatar {
+  background: content-box
+    radial-gradient(var(--bg-color) 40%, var(--bg-color--secondary));
 }
 
 .carousel::-webkit-scrollbar {
@@ -41,6 +67,13 @@
   border-color: var(--border-color);
 }
 
+.button__border-color {
+  border-color: transparent;
+}
+
+.button__border-color:hover {
+  border-color: var(--border-color);
+}
 .text-secondary {
   color: var(--font-color--secondary);
 }
@@ -102,7 +135,7 @@ li {
 
 @layer components {
   .btn-primary {
-    @apply flex items-center gap-2 rounded border-[1px] p-[2px] px-1 hover:border-solid border-white border-opacity-0  hover:border-opacity-[0.3];
+    @apply flex items-center gap-2 rounded border-[1px] p-[2px] px-1  border-opacity-0  button__border-color;
   }
 }
 

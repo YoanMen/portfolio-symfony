@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
+use Symfony\Component\Validator\Constraints\Length;
 
 class LinkCrudController extends AbstractCrudController
 {
@@ -33,7 +34,6 @@ class LinkCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'nom')->setColumns(3),
             TextField::new('label', 'label')->setColumns(3),
-
             UrlField::new('path', 'lien'),
             TextareaField::new('icon', 'code SVG de l\'icône ')->setColumns(15)->setNumOfRows(25)->onlyOnForms(),
         ];
@@ -50,8 +50,6 @@ class LinkCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-
-
 
         $entityInstance->setUpdatedAt(new \DateTimeImmutable());
         $entityManager->persist($entityInstance);

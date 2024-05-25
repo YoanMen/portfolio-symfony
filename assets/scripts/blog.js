@@ -1,17 +1,18 @@
 import { TabManager } from "./tabManager.js";
-
+import { Carousel } from "./carousel.js";
 window.onload = () => {
   // Get blog posts
   const tabManager = new TabManager();
+
   const blogsContainer = document.querySelector("#blog-container");
   const loadBlogs = document.querySelector("#load-blogs");
   const pagination = document.querySelector("#pagination-blog");
   let pageLinks;
 
-  getBlogPosts();
+  if (blogsContainer) getBlogPosts();
 
   async function getBlogPosts(page = 1) {
-    blogsContainer.innerHTML = "";
+    blogsContainer.textContent = "";
     loadBlogs.classList.toggle("hidden");
     const response = await fetch(`api/blog?page=${page}`, {
       method: "GET",
@@ -26,6 +27,13 @@ window.onload = () => {
 
     setBlogs(response.data);
     await setPagination(response.page, response.maxPage);
+
+    //
+    const carousels = document.querySelectorAll(".carousel-blog");
+
+    carousels.forEach((carousel) => {
+      new Carousel(carousel);
+    });
     listeningClickPageLink();
   }
 
@@ -36,14 +44,30 @@ window.onload = () => {
       function setImages() {
         if (blog.blogImages.length == 0) return "";
 
-        let content = `<hr class="border-color my-2">
-                        <div class="carousel flex gap-1 overflow-hidden overflow-x-scroll pt-2 pb-6">`;
+        content = ` <hr class="border-color my-8">
+                     <div autoplay class="carousel-blog mx-auto h-[480px] w-full relative max-w-3xl">
+                      <div class="carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
+                        <button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color ">
+                          <svg class=" m-auto rotate-90 " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
+                            <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
+                          </svg>
+                        </button>
+                        <button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color ">
+                          <svg class=" m-auto -rotate-90 " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
+                            <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
+                          </svg>
+                        </button>
+                      </div>
+                    
+                      <div class="carousel-container h-full mx-auto snap-mandatory snap-x overflow-hidden ">
+                        <div class="carousel-items cursor-pointer w-full h-full flex">
+        `;
 
         blog.blogImages.forEach((image) => {
-          content += `<img class="image h-64 object-cover select-none mx-auto" src="/images/articles/${image.imageName}">`;
+          content += `<img class="w-full h-full image flex-shrink-0 object-scale-down snap-center" src="/images/articles/${image.imageName}">`;
         });
 
-        content += "</div>";
+        content += "</div></div>";
         return content;
       }
 
@@ -54,18 +78,18 @@ window.onload = () => {
                     <h3 class="text-blue font-bold text-xl mb-2">
                       ${blog.name}
                     </h3>
-                    <div class="text-white arrow-js ">
+                    <div class=" arrow-js ">
                       <svg class="arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
                         <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
                       </svg>
                     </div>
                   </div>
-                  <p class="text-white text-sm ">
+                  <p class=" text-xs ">
                     created at ${date.toLocaleDateString()}
                   </p>
                   <div class="hidden detail pb-4">
                     <hr class="border-color my-2">
-                    <div name="project content" class="text-white">
+                    <div name="project content" >
                       ${blog.detail}
                     </div>
                         ${setImages()}
@@ -73,7 +97,7 @@ window.onload = () => {
                 </article>`;
     });
 
-    blogsContainer.innerHTML = content;
+    blogsContainer.insertAdjacentHTML("afterbegin", content);
 
     tabManager.setTabInteractive();
   }
@@ -92,7 +116,8 @@ window.onload = () => {
       }
     }
 
-    pagination.innerHTML = content;
+    pagination.textContent = "";
+    pagination.insertAdjacentHTML("afterbegin", content);
 
     pageLinks = document.querySelectorAll(".page");
   }

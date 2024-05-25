@@ -13,11 +13,10 @@ class ContactDTO
   #[Assert\NotBlank]
   #[Assert\Email]
   public string $email = '';
-  
+
   #[Assert\NotBlank]
   public string $contactType = '';
 
   #[Assert\NotBlank]
-  #[Assert\Length(min: 10)]
   public string $message = '';
 }

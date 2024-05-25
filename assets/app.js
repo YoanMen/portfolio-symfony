@@ -7,3 +7,4 @@ import "./bootstrap.js";
  */
 import "./styles/app.css";
 import "./scripts/blog.js";
+import "./scripts/carousel.js";

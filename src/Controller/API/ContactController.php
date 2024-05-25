@@ -18,30 +18,31 @@ class ContactController extends AbstractController
   #[Route('api/contact', methods: ['POST'], name: 'app_contact')]
   public function index(Request $request, MailerInterface $mailer)
   {
+
+
     $data = new ContactDTO();
 
-    $contactForm = $this->createForm(ContactType::class, $data);
+    $form = $this->createForm(ContactType::class, $data);
+    $form->handleRequest($request);
 
-    $contactForm->handleRequest($request);
-
-    if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-
+    if ($form->isSubmitted() && $form->isValid()) {
       try {
         $mail = (new TemplatedEmail())->to('contact@test.com')
+          ->subject("Message du portfolio par " . $data->name)
           ->from($data->email)
           ->htmlTemplate('email/contact.html.twig')
           ->context(['data' => $data]);
 
 
         $mailer->send($mail);
+        return new JsonResponse(['success' => true]);
       } catch (TransportExceptionInterface $e) {
+
         return new JsonResponse(['success' => false, 'error' => $e->getMessage()]);
       }
+    } else {
 
-
-      return new JsonResponse(['success' => true]);
+      return new JsonResponse(['success' => false, 'error' => "Error cant sent mail", 'data' => ""]);
     }
-
-    return new JsonResponse(['success' => false, 'error' => $contactForm->getErrors()]);
   }
 }

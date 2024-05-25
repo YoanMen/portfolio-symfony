@@ -7,8 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
+#[UniqueEntity('name')]
+#[UniqueEntity('path')]
+
 class Link
 {
     #[ORM\Id]
@@ -17,7 +22,15 @@ class Link
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, max: 255)]
+    #[Assert\NotBlank()]
+
     private ?string $path = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3, max: 255)]
+    #[Assert\NotBlank()]
+    private ?string $label = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $icon = null;
@@ -35,10 +48,9 @@ class Link
     private Collection $projectID;
 
     #[ORM\Column(length: 60)]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
-    #[ORM\Column(length: 40)]
-    private ?string $label = null;
 
     public function __construct()
     {
@@ -134,11 +146,6 @@ class Link
         return $this;
     }
 
-    public function __toString(): String
-    {
-        return $this->getName();
-    }
-
     public function getLabel(): ?string
     {
         return $this->label;
@@ -149,5 +156,12 @@ class Link
         $this->label = $label;
 
         return $this;
+    }
+
+
+
+    public function __toString(): String
+    {
+        return $this->getName();
     }
 }

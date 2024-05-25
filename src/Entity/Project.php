@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Assert\NotBlank;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[UniqueEntity('name')]
 class Project
 {
     #[ORM\Id]
@@ -17,9 +21,12 @@ class Project
     private ?int $id = null;
 
     #[ORM\Column(length: 120)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 3, max: 120)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
     private ?string $detail = null;
 
     #[ORM\Column]

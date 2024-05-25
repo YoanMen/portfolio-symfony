@@ -4,12 +4,23 @@
 	<li>Nom :
 		{{ data.name }}
 	</li>
-
+	<li>
+		<strong>Type de demande :</strong>
+		{% if data.contactType == '0' %}
+			<p>création d'un site</p>
+		{% elseif data.contactType == '1'%}
+			<p>ajout d'une fonctionalitée</p>
+		{% elseif data.contactType == '2' %}
+			<p>travail</p>
+		{% else %}
+			<p>autre</p>
+		{% endif %}
+	</li>
 	<li>Email :
 		{{ data.email }}
 	</li>
 	<li>
-		<strong>Message</strong><br>
+		<strong>Message :</strong><br>
 		{{ data.message | nl2br }}
 	</li>
 </ul>
