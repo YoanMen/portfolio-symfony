@@ -1,5 +1,5 @@
 {# Carousel #}
-<div autoplay class="carousel mx-auto h-[480px] w-full relative max-w-3xl">
+<div autoplay no-interaction class="carousel mx-auto h-[480px] w-full relative max-w-3xl">
 	<div class="carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
 		<button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color ">
 			<svg class=" m-auto rotate-90 " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
@@ -13,8 +13,8 @@
 		</button>
 	</div>
 
-	<div class="carousel-container h-full mx-auto snap-mandatory snap-x overflow-hidden ">
-		<div class="carousel-items cursor-pointer w-full h-full flex">
+	<div class="carousel-container h-full mx-auto ">
+		<div class="carousel-items cursor-pointer w-full h-full flex overflow-x-hidden snap-mandatory snap-x ">
 			<img class="w-full h-full image flex-shrink-0 object-scale-down snap-center" src="" alt="">
 		</div>
 

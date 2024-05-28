@@ -9,13 +9,14 @@
 export class Carousel {
   constructor(carousel, delay = 5000) {
     this.carousel = carousel;
-    this.container = this.carousel.querySelector(".carousel-container");
+    this.container = this.carousel.querySelector(".carousel-items");
     this.items;
     this.currentItem = 0;
     this.isScrolling = false;
-
     this.animationAutoplay;
     this.delay = delay;
+    this.autoplay;
+
     // initialize
     this.setCarousel();
   }
@@ -23,103 +24,105 @@ export class Carousel {
   setCarousel() {
     // get slides
     this.items = this.getItems();
-
+    this.autoplay = this.carousel.hasAttribute("autoplay");
     const hideButton = this.carousel.hasAttribute("hide-buttons");
-    const autoPlay = this.carousel.hasAttribute("autoplay");
     const noInteraction = this.carousel.hasAttribute("no-interaction");
 
+    // hide buttons if hide button params is set or if items is lower than 2
     if (hideButton || this.items.length <= 1) {
-      console.log("hide");
       this.carousel.querySelector(".carousel-control").classList.add("hidden");
-
       return;
     }
 
-    if (noInteraction) this.disableInteractionImage();
-    if (autoPlay) this.autoplay();
+    // autoplay carousel if autoplay params is set and items is > 1
+    if (this.autoplay && this.items.length > 1) {
+      this.autoplayScroll();
+    }
 
+    // disable interaction if no interaction is set
+    if (noInteraction) this.disableInteractionImage();
     // listen buttons
+
     this.previous();
     this.next();
   }
 
+  // get all images of carousel
   getItems() {
     const items = this.carousel.querySelector(".carousel-items").children;
     return items;
   }
 
+  // previous item
   previous() {
     const button = this.carousel.querySelector(".carousel-control").children[0];
 
     button.addEventListener("click", (e) => {
       e.stopPropagation();
-      clearTimeout(this.animationAutoplay);
+      if (this.autoplay) clearTimeout(this.animationAutoplay);
 
       this.changeSlide(this.currentItem - 1);
     });
   }
 
+  // next item
   next() {
     const button = this.carousel.querySelector(".carousel-control").children[1];
 
     button.addEventListener("click", (e) => {
       e.stopPropagation();
 
-      clearTimeout(this.animationAutoplay);
+      if (this.autoplay) clearTimeout(this.animationAutoplay);
 
       this.changeSlide(this.currentItem + 1);
     });
   }
 
+  // change slide
   changeSlide(index) {
     if (this.isScrolling) return;
-
     this.isScrolling = true;
 
     let moveForward = index > this.currentItem;
 
-    if (index < 0) {
-      index = this.items.length - 1;
-    } else if (index >= this.items.length - 1) {
-      index = 0;
-    }
+    this.setCurrentItem();
 
+    // move next
     if (moveForward) {
       this.scrollToItem(moveForward);
+      this.container.appendChild(this.items[0]);
     } else {
+      // move previous
       // insert last element on the first position before scroll
-      this.container.children[0].insertBefore(
+      this.container.insertBefore(
         this.items[this.items.length - 1],
-        this.container.children[0].firstChild
+        this.container.firstChild
       );
 
       this.scrollToItem(moveForward);
     }
 
-    // timeout to
-    setTimeout(() => {
-      if (moveForward) {
-        // Move the current item to the end if scrolling forward
-        this.container.children[0].appendChild(this.items[0]);
-      }
+    this.isScrolling = false;
 
-      this.isScrolling = false;
-      this.currentItem = index;
-
-      if (this.autoplay) {
-        this.autoplay();
-      }
-    }, 500);
+    if (this.autoplay) this.autoplayScroll();
   }
 
-  scrollToItem(moveForward) {
+  async scrollToItem(moveForward) {
     this.container.scrollTo({
-      behavior: "smooth",
+      behavior: "instant",
       left: this.items[moveForward ? 1 : 0].offsetLeft,
     });
   }
 
-  autoplay() {
+  setCurrentItem(index) {
+    if (index < 0) {
+      this.currentItem = this.items.length - 1;
+    } else if (index >= this.items.length - 1) {
+      this.currentItem = 0;
+    }
+  }
+
+  autoplayScroll() {
     this.animationAutoplay = setTimeout(() => {
       this.changeSlide(this.currentItem + 1);
     }, this.delay);

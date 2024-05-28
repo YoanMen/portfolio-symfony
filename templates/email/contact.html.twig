@@ -1,26 +1,29 @@
-<p>Une nouvelle demande de contact à été reçue</p>
-
-<ul>
-	<li>Nom :
-		{{ data.name }}
-	</li>
-	<li>
-		<strong>Type de demande :</strong>
-		{% if data.contactType == '0' %}
-			<p>création d'un site</p>
-		{% elseif data.contactType == '1'%}
-			<p>ajout d'une fonctionalitée</p>
-		{% elseif data.contactType == '2' %}
-			<p>travail</p>
-		{% else %}
-			<p>autre</p>
-		{% endif %}
-	</li>
-	<li>Email :
-		{{ data.email }}
-	</li>
-	<li>
-		<strong>Message :</strong><br>
-		{{ data.message | nl2br }}
-	</li>
-</ul>
+<body style="font-family:Arial,Helvetica,sans-serif;">'
+	<p>Demande de contact à été reçue</p>
+	<ul>
+		<li>
+			<strong>Nom :</strong>
+			{{ data.name }}
+		</li>
+		<li>
+			<strong>Type de demande :</strong>
+			{% if data.contactType == '0' %}
+				<p>création d'un site</p>
+			{% elseif data.contactType == '1'%}
+				<p>ajout d'une fonctionalitée</p>
+			{% elseif data.contactType == '2' %}
+				<p>travail</p>
+			{% else %}
+				<p>autre</p>
+			{% endif %}
+		</li>
+		<li>
+			<strong>Email :</strong>
+			{{ data.email }}
+		</li>
+		<li style="margin-top:8px">
+			<strong>Message :</strong><br>
+			{{ data.message | nl2br }}
+		</li>
+	</ul>
+</body>

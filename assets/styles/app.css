@@ -39,19 +39,6 @@ h4 {
     radial-gradient(var(--bg-color) 40%, var(--bg-color--secondary));
 }
 
-.carousel::-webkit-scrollbar {
-  background: transparent;
-}
-
-.carousel::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.carousel::-webkit-scrollbar-thumb {
-  background: var(--blue-color);
-  border-radius: 15px;
-}
-
 .bg-secondary {
   background-color: var(--bg-color--secondary);
 }

@@ -42,7 +42,7 @@ class ContactController extends AbstractController
       }
     } else {
 
-      return new JsonResponse(['success' => false, 'error' => "Error cant sent mail", 'data' => ""]);
+      return new JsonResponse(['success' => false, 'error' => "Error cant sent mail, data not valid"]);
     }
   }
 }

@@ -11,42 +11,35 @@ document.addEventListener("DOMContentLoaded", () => {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
-      .catch((error) => console.log(error));
-
-    console.log(r);
-    setMessage(r);
+      .then(async (response) => {
+        const data = await response.json();
+        if (data.success) {
+          submitBut.classList.add("opacity-60");
+          submitBut.classList.remove("hover:opacity-95");
+          submitBut.disabled = true;
+          messageMailStatut(
+            "Your message has been sent and you will be contacted shortly."
+          );
+        } else {
+          messageMailStatut(data.error, true);
+        }
+      })
+      .catch((error) => {
+        messageMailStatut(`error : ${error.message}`, true);
+      });
   });
 
-  function setMessage(response) {
-    const alertMessage = form.querySelector(".alert");
-    if (alertMessage) alertMessage.remove();
+  function messageMailStatut(messageText, error = false) {
+    let message = form.querySelector(".message-mail-js");
 
-    if (!response.success) {
-      const errorText = document.createElement("p");
-      errorText.classList.add("text-red-400", "text-lg", "alert");
-      errorText.innerText =
-        "There was an issue with your request : " + response.error;
+    if (message) message.remove();
 
-      form.insertAdjacentElement("afterbegin", errorText);
-    } else {
-      submitBut.classList.remove(
-        "hover:opacity-95",
-        "active:opacity-80",
-        "cursor-pointer"
-      );
-      submitBut.classList.add("opacity-50");
+    message = document.createElement("div");
+    message.className = `message-mail-js text-black  bg-${
+      error ? "red" : "green"
+    }-200 px-2 py-4 rounded`;
+    message.textContent = messageText;
 
-      // disable send button
-      submitBut.disabled = true;
-
-      // add alert message
-      const successText = document.createElement("p");
-      successText.classList.add("text-green-400", "text-lg", "alert");
-      successText.innerText =
-        "Your message has been sent and you will be contacted shortly.";
-
-      form.insertAdjacentElement("afterbegin", successText);
-    }
+    form.insertAdjacentElement("afterbegin", message);
   }
 });
