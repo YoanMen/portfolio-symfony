@@ -9,15 +9,29 @@ window.onload = () => {
   const pagination = document.querySelector("#pagination-blog");
   let pageLinks;
 
+  const searchInput = document.querySelector("#search-blog");
+  let finishTimer;
+
+  searchInput.addEventListener("input", () => {
+    clearTimeout(finishTimer);
+
+    finishTimer = setTimeout(() => {
+      getBlogPosts();
+    }, 500);
+  });
+
   if (blogsContainer) getBlogPosts();
 
   async function getBlogPosts(page = 1) {
     blogsContainer.textContent = "";
     loadBlogs.classList.toggle("hidden");
-    const response = await fetch(`api/blog?page=${page}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
+    const response = await fetch(
+      `api/blog?page=${page}&search=${searchInput.value}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then((response) => response.json())
       .catch(() => alert.error("Error get blogs"));
 
@@ -68,6 +82,7 @@ window.onload = () => {
         });
 
         content += "</div></div>";
+
         return content;
       }
 
@@ -97,6 +112,8 @@ window.onload = () => {
                 </article>`;
     });
 
+    console.log(surligneSearchInput(content));
+    content = surligneSearchInput(content);
     blogsContainer.insertAdjacentHTML("afterbegin", content);
 
     tabManager.setTabInteractive();
@@ -104,6 +121,8 @@ window.onload = () => {
 
   async function setPagination(page, maxPage) {
     let content = "";
+
+    if (maxPage == 1) return;
     for (let index = 0; index < maxPage; index++) {
       if (index + 1 == page) {
         content += `<a data-page=${index + 1} class="page text-2xl" href="#">${
@@ -122,7 +141,18 @@ window.onload = () => {
     pageLinks = document.querySelectorAll(".page");
   }
 
+  function surligneSearchInput(content) {
+    if (searchInput.value.length > 1) {
+      return content.replaceAll(
+        searchInput.value.trim(),
+        `<strong class="surligne">${searchInput.value.trim()}</strong>`
+      );
+    }
+    return content;
+  }
+
   function listeningClickPageLink() {
+    if (!pageLinks) return;
     pageLinks.forEach((pageLink) => {
       pageLink.addEventListener("click", (event) => {
         event.preventDefault();

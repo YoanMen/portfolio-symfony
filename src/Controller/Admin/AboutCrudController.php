@@ -43,11 +43,4 @@ class AboutCrudController extends AbstractCrudController
                 ->setColumns(12)->setNumOfRows(25)
         ];
     }
-
-    public function updateEntity(EntityManagerInterface $entityManager,  $entityInstance): void
-    {
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
 }

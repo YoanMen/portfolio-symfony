@@ -41,8 +41,12 @@ export class Carousel {
 
     // disable interaction if no interaction is set
     if (noInteraction) this.disableInteractionImage();
-    // listen buttons
 
+    // clone first image to end
+    const image = this.items[0].cloneNode();
+    this.container.appendChild(image);
+
+    // listen buttons
     this.previous();
     this.next();
   }
@@ -82,44 +86,38 @@ export class Carousel {
   changeSlide(index) {
     if (this.isScrolling) return;
     this.isScrolling = true;
+    this.currentItem = index;
 
-    let moveForward = index > this.currentItem;
+    if (index > this.items.length - 1) {
+      // scroll instant to the first image
+      this.container.scrollTo({
+        behavior: "instant",
+        left: this.items[0].offsetLeft,
+      });
+      this.currentItem = 1;
+    } else if (index < 0) {
+      // scroll instant to the last image
+      this.container.scrollTo({
+        behavior: "instant",
+        left: this.items[this.items.length - 1].offsetLeft,
+      });
 
-    this.setCurrentItem();
-
-    // move next
-    if (moveForward) {
-      this.scrollToItem(moveForward);
-      this.container.appendChild(this.items[0]);
-    } else {
-      // move previous
-      // insert last element on the first position before scroll
-      this.container.insertBefore(
-        this.items[this.items.length - 1],
-        this.container.firstChild
-      );
-
-      this.scrollToItem(moveForward);
+      this.currentItem = this.items.length - 2;
     }
+
+    // scroll to new image
+    this.scrollToItem();
 
     this.isScrolling = false;
 
     if (this.autoplay) this.autoplayScroll();
   }
 
-  async scrollToItem(moveForward) {
+  scrollToItem() {
     this.container.scrollTo({
-      behavior: "instant",
-      left: this.items[moveForward ? 1 : 0].offsetLeft,
+      behavior: "smooth",
+      left: this.items[this.currentItem].offsetLeft,
     });
-  }
-
-  setCurrentItem(index) {
-    if (index < 0) {
-      this.currentItem = this.items.length - 1;
-    } else if (index >= this.items.length - 1) {
-      this.currentItem = 0;
-    }
   }
 
   autoplayScroll() {

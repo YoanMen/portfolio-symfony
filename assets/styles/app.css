@@ -108,6 +108,23 @@ body {
   font-display: swap;
 }
 
+.surligne {
+  color: black;
+  background-color: yellow;
+}
+
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
 h1,
 h2 {
   font-family: var(--font-roboto);

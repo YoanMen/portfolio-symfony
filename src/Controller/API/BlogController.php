@@ -15,9 +15,11 @@ class BlogController extends AbstractController
   {
 
     $page = $request->query->getInt("page", 1);
+    $search = $request->query->getString("search", '');
+
     $limit = 5;
 
-    $blogs = $blogRepository->paginateBlogs($page, $limit);
+    $blogs = $blogRepository->paginateBlogs(trim($search), $page, $limit);
     $maxPage = ceil($blogRepository->count() / $limit);
     return $this->json([
       'data' => $blogs,

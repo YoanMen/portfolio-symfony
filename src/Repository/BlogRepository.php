@@ -18,11 +18,14 @@ class BlogRepository extends ServiceEntityRepository
     }
 
 
-    public function paginateBlogs(int $page, int $limit): Paginator
+    public function paginateBlogs(string $search, int $page, int $limit): Paginator
     {
+        $searchTerm = '%' . $search . '%';
 
         return new Paginator($this->createQueryBuilder('r')
+            ->where('r.name LIKE :search OR r.detail LIKE :search')
             ->setFirstResult(($page - 1) * $limit)
+            ->setParameter('search', $searchTerm)
             ->setMaxResults($limit));
     }
 }

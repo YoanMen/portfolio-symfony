@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class BlogCrudController extends AbstractCrudController
 {
@@ -25,13 +26,13 @@ class BlogCrudController extends AbstractCrudController
             ->setPageTitle('edit', 'Modification d\'un article de Blog')
             ->setPageTitle('detail', 'Détails d\'un article de blog')
             ->setPageTitle('new', 'Création d\'un article de Blog')
-            ->setDateFormat('   dd/MM/Y');
+            ->setDateFormat('   dd/MM/Y')
+            ->setPaginatorPageSize(10);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->onlyOnIndex(),
             TextField::new('name', "Titre"),
             TextField::new('detail', 'Article')->onlyOnIndex(),
             TextEditorField::new('detail', 'Article')->setTrixEditorConfig([
@@ -47,27 +48,10 @@ class BlogCrudController extends AbstractCrudController
                 ->setColumns(12)->setNumOfRows(25),
             CollectionField::new('blogImages', 'Ajouter des images')
                 ->setEntryType(BlogImageType::class)->onlyOnForms(),
+            AssociationField::new('blogImages', 'Images')->onlyOnIndex()
 
 
 
         ];
-    }
-
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $entityInstance->setCreatedAt(new \DateTimeImmutable());
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
-
-
-    public function updateEntity(EntityManagerInterface $entityManager,  $entityInstance): void
-    {
-
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
     }
 }

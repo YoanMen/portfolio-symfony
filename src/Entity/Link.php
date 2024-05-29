@@ -24,15 +24,21 @@ class Link
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 3, max: 255)]
     #[Assert\NotBlank()]
+    #[Assert\Required()]
 
     private ?string $path = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 3, max: 255)]
     #[Assert\NotBlank()]
+    #[Assert\Required()]
+
     private ?string $label = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
+    #[Assert\Required()]
+
     private ?string $icon = null;
 
     #[ORM\Column]
@@ -55,6 +61,11 @@ class Link
     public function __construct()
     {
         $this->projectID = new ArrayCollection();
+
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTimeImmutable());
+        }
+        $this->setUpdatedAt(new \DateTimeImmutable());
     }
 
     public function getId(): ?int

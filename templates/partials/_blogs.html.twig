@@ -1,10 +1,18 @@
 <section name="blog" id="blog" class="section max-w-7xl w-full mx-auto  mt-20 xl:rounded  p-4 border-color border-[1px]">
-	<h2 class="text-white text-2xl flex items-center gap-2 mb-2">
-		<div class="text-white">
+	<h2 class="text-color text-2xl flex items-center gap-2 mb-2">
+		<div class="text-color">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="currentColor" d="M7 17h7v-2H7zm0-4h10v-2H7zm0-4h10V7H7zM5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zM5 5v14z"/></svg>
 		</div>
 		Blog
 	</h2>
+
+	<div class="relative">
+		<input class="pl-12  w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded-md focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4" type="search" name="search" id="search-blog" placeholder="Search a blog">
+		<div class="absolute inset-y-0 left-0 pl-3 h-10 flex items-center pointer-events-none">
+			<svg class="size-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path fill="currentColor" d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396l1.414-1.414l-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8s3.589 8 8 8m0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6s-6-2.691-6-6s2.691-6 6-6"/></svg>
+		</div>
+	</div>
+
 
 	{# LOADING SPIN #}
 	<div id="load-blogs" class="size-10 text-blue mx-auto	hidden">

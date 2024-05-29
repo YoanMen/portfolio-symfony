@@ -40,19 +40,5 @@ class LinkCrudController extends AbstractCrudController
     }
 
 
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $entityInstance->setCreatedAt(new \DateTimeImmutable());
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
-
-    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
+ 
 }

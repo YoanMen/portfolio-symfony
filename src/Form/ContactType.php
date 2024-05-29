@@ -30,7 +30,7 @@ class ContactType extends AbstractType
                     'attr' => [
                         'minlength' => '3',
                         'maxlength' => '200',
-                        'class' => 'border-2 p-2 text-black rounded-sm w-full h-10'
+                        'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
                     ]
                 ]
             )
@@ -42,7 +42,7 @@ class ContactType extends AbstractType
                 'label_attr' => [],
                 'attr' =>
                 [
-                    'class' => 'border-2 p-2 text-black rounded-sm w-full h-10'
+                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
                 ],
             ])
             ->add('contactType', ChoiceType::class, [
@@ -53,9 +53,12 @@ class ContactType extends AbstractType
                     'Other' => 3,
                 ],
                 'label_attr' => [],
+                'choice_attr' => function ($choice, $key, $value) {
+                    return ['class' => 'text-black'];
+                },
                 'attr' =>
                 [
-                    'class' => 'border-2 p-2 text-black rounded-sm w-full h-10'
+                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
                 ],
             ])
             ->add('message', TextareaType::class, [
@@ -65,7 +68,7 @@ class ContactType extends AbstractType
                 [
                     'minlength' => '10',
                     'rows' => '10',
-                    'class' => 'border-2 text-black rounded-sm p-2 w-full resize-none'
+                    'class' => 'w-full text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4 resize-none'
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [

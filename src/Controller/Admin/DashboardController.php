@@ -28,6 +28,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
+            ->disableDarkMode()
             ->setTitle('Admin Panel');
     }
 
@@ -36,10 +37,13 @@ class DashboardController extends AbstractDashboardController
         if (!$this->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-
+        yield MenuItem::linkToUrl('Retour au site', 'fas fa-home',  '/');
+        yield MenuItem::linkToDashboard('NAME', 'ICON');
+        yield MenuItem::section('données');
         yield MenuItem::linkToCrud('A propos', 'fas fa-info', About::class);
         yield MenuItem::linkToCrud('Projets', 'fas fa-book', Project::class);
         yield MenuItem::linkToCrud('Blog', 'fas fa-blog', Blog::class);
+        yield MenuItem::section('sous-données');
         yield MenuItem::linkToCrud('Liens', 'fas fa-link', Link::class);
         yield MenuItem::linkToCrud('Technologies', 'fas fa-gear', Technology::class);
     }

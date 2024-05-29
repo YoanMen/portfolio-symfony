@@ -53,6 +53,12 @@ class Blog
     public function __construct()
     {
         $this->blogImages = new ArrayCollection();
+
+        if ($this->createdAt == null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

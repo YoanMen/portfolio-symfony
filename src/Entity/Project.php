@@ -37,7 +37,7 @@ class Project
     /**
      * @var Collection<int, Link>
      */
-    #[ORM\ManyToMany(targetEntity: Link::class, mappedBy: 'projectID')]
+    #[ORM\ManyToMany(targetEntity: Link::class, mappedBy: 'projectID', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $links;
 
     /**
@@ -57,6 +57,12 @@ class Project
         $this->links = new ArrayCollection();
         $this->technologies = new ArrayCollection();
         $this->projectImages = new ArrayCollection();
+
+        if ($this->createdAt == null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

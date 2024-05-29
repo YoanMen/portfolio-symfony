@@ -2,17 +2,15 @@
 
 namespace App\Controller\Admin;
 
-
+use App\Form\LinkType;
 use App\Entity\Project;
 use App\Form\ProjectImageType;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 
 class ProjectCrudController extends AbstractCrudController
@@ -33,7 +31,6 @@ class ProjectCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'Nom'),
             TextField::new('detail', 'Description')->onlyOnIndex(),
 
@@ -46,34 +43,25 @@ class ProjectCrudController extends AbstractCrudController
                     'by_reference' => false,
                     'multiple' => true,
                     'choice_label' => 'name',
-                ]),
+                ])->onlyOnIndex(),
             AssociationField::new('technologies', 'Technologies')
                 ->setFormTypeOptions([
                     'by_reference' => false,
                     'multiple' => true,
                     'choice_label' => 'name',
                 ]),
-            AssociationField::new('projectImages', 'images')->onlyOnIndex(),
+            AssociationField::new('projectImages', 'Images')->onlyOnIndex(),
+            CollectionField::new('Links', 'Créer des liens externe')
+                ->setEntryType(LinkType::class)
+                ->setFormTypeOptions([
+                    'required' => true,
+                ])
+                ->allowAdd()
+                ->allowDelete()
+                ->onlyOnForms(),
             CollectionField::new('projectImages', 'Ajouter des images')
-                ->setEntryType(ProjectImageType::class)->onlyOnForms()
-
+                ->setEntryType(ProjectImageType::class)->onlyOnForms(),
 
         ];
-    }
-
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $entityInstance->setCreatedAt(new \DateTimeImmutable());
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
-    public function updateEntity(EntityManagerInterface $entityManager,  $entityInstance): void
-    {
-
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
     }
 }

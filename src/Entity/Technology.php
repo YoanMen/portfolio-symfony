@@ -43,6 +43,12 @@ class Technology
     public function __construct()
     {
         $this->projectID = new ArrayCollection();
+
+        if ($this->createdAt == null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

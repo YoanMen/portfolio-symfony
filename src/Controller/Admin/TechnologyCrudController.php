@@ -35,19 +35,5 @@ class TechnologyCrudController extends AbstractCrudController
         ];
     }
 
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityInstance->setCreatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
 
-    public function updateEntity(EntityManagerInterface $entityManager,  $entityInstance): void
-    {
-
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
 }

@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (message) message.remove();
 
     message = document.createElement("div");
-    message.className = `message-mail-js text-black  bg-${
-      error ? "red" : "green"
-    }-200 px-2 py-4 rounded`;
+    message.className = `message-mail-js text-black  ${
+      error ? "error" : "success"
+    } px-2 py-4 rounded`;
     message.textContent = messageText;
 
     form.insertAdjacentElement("afterbegin", message);
