@@ -38,7 +38,6 @@ class DashboardController extends AbstractDashboardController
             throw new AccessDeniedException();
         }
         yield MenuItem::linkToUrl('Retour au site', 'fas fa-home',  '/');
-        yield MenuItem::linkToDashboard('NAME', 'ICON');
         yield MenuItem::section('données');
         yield MenuItem::linkToCrud('A propos', 'fas fa-info', About::class);
         yield MenuItem::linkToCrud('Projets', 'fas fa-book', Project::class);

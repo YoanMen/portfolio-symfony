@@ -12,13 +12,15 @@ window.onload = () => {
   const searchInput = document.querySelector("#search-blog");
   let finishTimer;
 
-  searchInput.addEventListener("input", () => {
-    clearTimeout(finishTimer);
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      clearTimeout(finishTimer);
 
-    finishTimer = setTimeout(() => {
-      getBlogPosts();
-    }, 500);
-  });
+      finishTimer = setTimeout(() => {
+        getBlogPosts();
+      }, 500);
+    });
+  }
 
   if (blogsContainer) getBlogPosts();
 
