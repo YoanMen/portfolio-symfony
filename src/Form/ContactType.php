@@ -22,6 +22,7 @@ class ContactType extends AbstractType
                 'name',
                 TextType::class,
                 [
+                    'required' => false,
                     'empty_data' => '',
                     'row_attr' => [
                         'class' => 'flex flex-col'
@@ -30,19 +31,20 @@ class ContactType extends AbstractType
                     'attr' => [
                         'minlength' => '3',
                         'maxlength' => '200',
-                        'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
+                        'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px]'
                     ]
                 ]
             )
             ->add('email', EmailType::class, [
                 'empty_data' => '',
+                'required' => false,
                 'row_attr' => array(
                     'class' => 'flex flex-col'
                 ),
                 'label_attr' => [],
                 'attr' =>
                 [
-                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
+                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px]'
                 ],
             ])
             ->add('contactType', ChoiceType::class, [
@@ -53,27 +55,29 @@ class ContactType extends AbstractType
                     'Other' => 3,
                 ],
                 'label_attr' => [],
-                'choice_attr' => function ($choice, $key, $value) {
+                'choice_attr' => function () {
                     return ['class' => 'text-black'];
                 },
                 'attr' =>
                 [
-                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4'
+                    'class' => 'w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mt-4'
                 ],
             ])
             ->add('message', TextareaType::class, [
+                'required' => false,
                 'empty_data' => '',
                 'label_attr' => [],
                 'attr' =>
                 [
                     'minlength' => '10',
                     'rows' => '10',
-                    'class' => 'w-full text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] mb-4 resize-none'
+                    'class' => 'w-full text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px] resize-none'
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => false
+                'label' => false,
+                'required' => true,
 
             ])
             ->add('save', SubmitType::class, [

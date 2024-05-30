@@ -90,16 +90,16 @@ window.onload = () => {
 
       content += `<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5] hover:bg-black hover:bg-opacity-5 transition-all duration-150 ease-in-out">
                   <div class="flex justify-between">
-                    <h3 class="text-blue font-bold text-xl mb-2">
+                    <h3 class="text-blue font-bold text-xl mb-2 test">
                       ${blog.name}
                     </h3>
-                    <div class=" arrow-js ">
+                    <div>
                       <svg class="arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
                         <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
                       </svg>
                     </div>
                   </div>
-                  <p class=" text-xs ">
+                  <p class="text-xs">
                     created at ${date.toLocaleDateString()}
                   </p>
                   <div class="hidden detail pb-4">
@@ -112,10 +112,7 @@ window.onload = () => {
                 </article>`;
     });
 
-    console.log(surligneSearchInput(content));
-    content = surligneSearchInput(content);
     blogsContainer.insertAdjacentHTML("afterbegin", content);
-
     tabManager.setTabInteractive();
   }
 
@@ -139,16 +136,6 @@ window.onload = () => {
     pagination.insertAdjacentHTML("afterbegin", content);
 
     pageLinks = document.querySelectorAll(".page");
-  }
-
-  function surligneSearchInput(content) {
-    if (searchInput.value.length > 1) {
-      return content.replaceAll(
-        searchInput.value.trim(),
-        `<strong class="surligne">${searchInput.value.trim()}</strong>`
-      );
-    }
-    return content;
   }
 
   function listeningClickPageLink() {
