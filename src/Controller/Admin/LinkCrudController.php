@@ -3,15 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Link;
-use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
-use Symfony\Component\Validator\Constraints\Length;
 
 class LinkCrudController extends AbstractCrudController
 {
@@ -20,6 +19,7 @@ class LinkCrudController extends AbstractCrudController
         return Link::class;
     }
 
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud->setPageTitle('index', 'Liens')
@@ -27,6 +27,10 @@ class LinkCrudController extends AbstractCrudController
             ->setPageTitle('new', 'Ajouter un lien');
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->remove(Crud::PAGE_INDEX, Action::NEW);
+    }
 
     public function configureFields(string $pageName): iterable
     {
@@ -38,7 +42,4 @@ class LinkCrudController extends AbstractCrudController
             TextareaField::new('icon', 'code SVG de l\'icône ')->setColumns(15)->setNumOfRows(25)->onlyOnForms(),
         ];
     }
-
-
- 
 }

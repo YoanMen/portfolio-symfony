@@ -24,20 +24,17 @@ class Link
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 3, max: 255)]
     #[Assert\NotBlank()]
-    #[Assert\Required()]
 
     private ?string $path = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 3, max: 255)]
     #[Assert\NotBlank()]
-    #[Assert\Required()]
 
     private ?string $label = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank()]
-    #[Assert\Required()]
 
     private ?string $icon = null;
 
@@ -55,6 +52,7 @@ class Link
 
     #[ORM\Column(length: 60)]
     #[Assert\NotBlank()]
+
     private ?string $name = null;
 
 

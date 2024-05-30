@@ -1,0 +1,142 @@
+:root {
+  --bg-color: #0d1117;
+  --bg-color--secondary: #010409;
+  --border-color: #30363d;
+  --blue-color: #2276f5;
+  --error-color: red;
+
+  --body-bg: #0d1117;
+  --text-color: white;
+  --text-color-dark: white;
+
+  --button-primary-bg: var(--blue-color);
+  --button-primary-color: white;
+  --button-secondary-bg: var(--bg-color--secondary);
+  --button-secondary-color: white;
+  --button-hover-color: white;
+
+  --content-search-input-bg: transparent;
+
+  --responsive-header-bg: var(--bg-color--secondary);
+  --responsive-header-border-color: var(--border-color);
+  --responsive-header-logo-color: white;
+
+  --modal-bg: var(--bg-color);
+
+  --modal-footer-bg: var(--bg-color);
+  --modal-border-color: var(--border-color);
+  --sidebar-bg: var(--bg-color--secondary);
+  --sidebar-menu-active-item-color: var(--blue-color);
+  --sidebar-logo-color: white;
+  --sidebar-menu-color: white;
+  --sidebar-border-color: var(--border-color);
+  --resize-handler-hover-bg: var(--blue-color);
+  --sidebar-menu-icon-color: white;
+  --sidebar-menu-header-color: var(--border-color);
+  --sidebar-menu-active-item-bg: var(--blue-color);
+  --sidebar-menu-active-item-color: white;
+  --font-family-base: "Roboto", sans-serif;
+  --link-color: var(--blue-color);
+  --link-hover-color: var(--blue-color);
+
+  --table-thead-color: var(--border-color);
+  --table-cell-border-color: var(--border-color);
+  --bs-table-border-color: var(--border-color);
+  --bs-table-color: white;
+  --bs-table-color: red;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.2);
+  --table-cell-color: white;
+  --table-selected-cell-bg: var(--bg-color--secondary);
+  --bs-table-hover-color: rgba(0, 0, 0, 0.2);
+  --table-thead-sorted-marker-color: var(--blue-color);
+
+  --table-hover-cell-bg: rgba(0, 0, 0, 0.2);
+
+  --dropdown-link-color: white;
+  --dropdown-toggle-hover-border-color: var(--blue-color);
+  --table-thead-sorted-color: var(--blue-color);
+  --content-top-border-color: var(--border-color);
+  --color-primary: var(--blue-color);
+
+  --form-input-text-color: white;
+  --form-type-check-input-border-color: var(--border-color);
+  --form-type-check-input-checked-bg: var(--blue-color);
+  --form-input-hover-shadow: var(--border-color);
+  --form-input-error-shadow: red;
+  --form-label-color: white;
+  --dropdown-link-hover-bg: var(--border-color);
+  --badge-secondary-bg: transparent;
+  --badge-secondary-color: white;
+  --dropdown-toggle-bg: transparent;
+  --dropdown-toggle-border-color: var(--border-color);
+  --button-active-shadow: var(--border-color);
+  --button-shadow: var(--border-color);
+  --button-hover-shadow: var(--border-color);
+
+  --form-control-bg: var(--bg-color);
+
+  --form-input-border-color: var(--border-color);
+  --form-input-shadow: transparent;
+  --form-input-hover-border-color: var(--blue-color);
+
+  --form-type-text-editor-toolbar-bg: var(--blue-color);
+  --form-type-text-editor-toolbar-button-color: white;
+  --form-type-text-editor-toolbar-button-color: white;
+  --form-type-text-editor-toolbar-button-hover-color: rgba(0, 0, 0, 0.2);
+  --form-type-text-editor-toolbar-button-active-bg: white;
+  --form-type-text-editor-toolbar-button-active-color: var(--blue-color);
+  --form-type-text-editor-content-pre-bg: white;
+  --form-type-text-editor-content-pre-color: white;
+  --form-type-text-editor-dialog-box-shadow: var(--border-color);
+  --form-type-text-editor-dialog-bg: var(--bg-color--secondary);
+  --form-type-autocomplete-dropdown-active-item-bg: var(var(--border-color));
+  --form-type-autocomplete-multi-item-bg: var(--blue-color);
+  --form-type-autocomplete-multi-item-border-color: var(--border-color);
+  --form-type-autocomplete-dropdown-bg: var(--bg-color);
+  --form-type-autocomplete-dropdown-input-wrapper-bg: var(--bg-color);
+  --form-type-autocomplete-dropdown-input-border-color: var(--border-color);
+  --form-type-autocomplete-dropdown-active-item-bg: var(--blue-color);
+  --form-type-collection-item-collapsed-hover-bg: var(--blue-color);
+  --bs-accordion-btn-color: red;
+}
+
+.dropdown-menu {
+  background-color: var(--bg-color);
+  border-color: var(--border-color);
+}
+.trix-toolbar {
+  background-color: transparent;
+}
+
+.field-color .color-sample {
+  box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled):not(.btn-link):not(.btn-danger):hover {
+  opacity: 0.85;
+  transition: all linear 0.2s;
+}
+
+.btn:not(:disabled):not(.disabled):not(.btn-link):not(.btn-danger):active {
+  opacity: 0.7;
+  transition: all linear 0.2s;
+}
+.has-error .CodeMirror,
+.has-error .btn.input-file-container,
+.has-error .ea-fileupload .input-group,
+.has-error .ea-text-editor-wrapper,
+.has-error .form-widget .form-select,
+.has-error .form-widget input.form-control,
+.has-error .form-widget textarea.form-control {
+  border: 1px solid var(--error-color);
+  opacity: 0.5;
+}
+
+.ts-dropdown-content {
+  color: white;
+}
+
+.ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+  border-left: 1px solid var(--border-color);
+  margin-left: 5px;
+}
