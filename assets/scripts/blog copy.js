@@ -1,5 +1,7 @@
 import { TabManager } from "./tabManager.js";
 import { Carousel } from "./carousel.js";
+import { Article } from "./blogArticle.js";
+
 window.onload = () => {
   // Get blog posts
   const tabManager = new TabManager();
@@ -101,12 +103,12 @@ window.onload = () => {
                       </svg>
                     </div>
                   </div>
-                  <p class="text-xs">
+                  <p class="text-xs text-gray-500 ">
                     created at ${date.toLocaleDateString()}
                   </p>
                   <div class="hidden detail pb-4">
                     <hr class="border-color my-2">
-                    <div name="project content" >
+                    <div name="blog-content" class="p-4 max-lg:p-2" >
                       ${blog.detail}
                     </div>
                         ${setImages()}

@@ -11,14 +11,20 @@
   --border-color: #30363d;
   --blue-color: #2276f5;
   --font-color: #e5e5e5;
+
+  --button-link: #21262d;
+  --button-link-hover: #262b33;
 }
 
 .light-mode {
   --bg-color: white;
   --bg-color--secondary: #f6f8faff;
   --border-color: #dae0e6ff;
-  --blue-color: #2276f5;
+  --blue-color: #3482f7;
   --font-color: black;
+
+  --button-link: #2e353f;
+  --button-link-hover: #3d4552;
 }
 p,
 div,
@@ -61,6 +67,15 @@ h4 {
 .button__border-color:hover {
   border-color: var(--border-color);
 }
+
+.button-link-bg {
+  background-color: var(--button-link);
+}
+
+.button-link-bg:hover {
+  background-color: var(--button-link-hover);
+}
+
 .text-secondary {
   color: var(--font-color--secondary);
 }
@@ -108,11 +123,6 @@ body {
   font-display: swap;
 }
 
-.surligne {
-  color: black;
-  background-color: yellow;
-}
-
 .success {
   color: #155724;
   background-color: #d4edda;
@@ -140,6 +150,10 @@ li {
 @layer components {
   .btn-primary {
     @apply flex items-center gap-2 rounded border-[1px] p-[2px] px-1  border-opacity-0  button__border-color;
+  }
+
+  .btn-link {
+    @apply flex items-center w-full rounded-lg border-[1px] p-2 border-color  max-w-max button-link-bg text-gray-200;
   }
 }
 

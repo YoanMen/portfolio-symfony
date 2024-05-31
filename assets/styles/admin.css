@@ -1,11 +1,11 @@
-/* Variables Globales */
 :root {
-  /* Couleurs de fond */
   --bg-color: #0d1117;
   --bg-color--secondary: #010409;
   --border-color: #30363d;
   --blue-color: #2276f5;
   --error-color: red;
+
+  /* override style */
 
   --body-bg: #0d1117;
   --body-max-width: 100%;

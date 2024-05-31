@@ -16,13 +16,14 @@ class AuthAttempt
     #[ORM\Column]
     private ?int $attempt = null;
 
-    #[ORM\Column(length: 120, nullable: true)]
+    #[ORM\Column(length: 120, nullable: false)]
     private ?string $ip = null;
+
 
     #[ORM\OneToOne(inversedBy: 'authAttempt', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: false)]
     private ?\DateTimeImmutable $attemptAt = null;
 
 

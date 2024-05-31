@@ -16,10 +16,14 @@ class LinkType extends AbstractType
 
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('path', TextType::class, ['label' => "url"])->setRequired(true)
-      ->add('name', TextType::class, ['label' => "nom"])->setRequired(true)
-      ->add('label', TextType::class, ['label' => "label"])->setRequired(true)
-      ->add('icon', TextareaType::class, ['label' => "code SVG de l'icône"])->setRequired(true);
+    $builder->add('path', TextType::class, ['label' => "url",  'required' => true])
+      ->add('name', TextType::class, ['label' => "nom",  'required' => true])
+      ->add('label', TextType::class, ['label' => "label",  'required' => true])
+      ->add('icon', TextareaType::class, [
+        'label' => "code SVG de l'icône",
+        'required' => false,
+        'empty_data' => ''
+      ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void

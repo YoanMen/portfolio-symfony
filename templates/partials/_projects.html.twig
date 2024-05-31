@@ -1,4 +1,4 @@
-<section name="projects" id="projects" class="section max-w-7xl w-full mx-auto  mt-20 xl:rounded  p-4 border-color border-[1px]">
+<section name="projects" id="projects" class="section max-w-6xl w-full mx-auto  mt-20 xl:rounded  p-4 border-color border-[1px]">
 	<h2 class="text-2xl flex items-center gap-2 mb-2">
 		<div class="">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="currentColor" d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5c-1.65 0-3.35.3-4.75 1.05c-.1.05-.15.05-.25.05c-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1c1.11-.35 2.33-.5 3.5-.5c1.95 0 4.05.4 5.5 1.5c1.45-1.1 3.55-1.5 5.5-1.5c1.17 0 2.39.15 3.5.5c.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5c-.1 0-.15 0-.25-.05c-1.4-.75-3.1-1.05-4.75-1.05c-1.7 0-4.15.65-5.5 1.5m-1-14c-1.36-.6-3.16-1-4.5-1c-1.2 0-2.4.15-3.5.5v11.5c1.1-.35 2.3-.5 3.5-.5c1.34 0 3.14.4 4.5 1zM13 19c1.36-.6 3.16-1 4.5-1c1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5c-1.34 0-3.14.4-4.5 1z"/></svg>
@@ -9,54 +9,72 @@
 	</p>
 	<div name="article-container" class="flex flex-col gap-6 ">
 		{% for project in projects %}
-			<article class="tab p-2 rounded border-color border-[1px] cursor-pointer hover:border-[#2276f5] hover:bg-black hover:bg-opacity-5 transition-all duration-150 ease-in-out">
-				<div class="flex justify-between">
-					<h3 class="text-blue font-bold text-xl mb-2">
+			<article class="tab px-2 max-lg:px-0 py-4 border-color border-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">
+				<div class="flex  justify-between items-center ">
+					<h3 class="text-blue font-medium text-2xl  ">
 						{{ project.name }}
 					</h3>
-					<div class="arrow-js ">
-						<svg class="arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
+					<button class="link btn-link see-more-js">
+						<div class="text-gray-200 pr-2">
+							Show more
+						</div>
+						<svg class=" arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
 							<path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
 						</svg>
-					</div>
+					</button>
+
 				</div>
-				{# LINKS #}
-				<ul name="links" class="flex gap-2 pb-2">
 
-					{% for link in project.links %}
-						<li>
-							<a class="link btn-primary  max-w-max bg-secondary " href=" {{ link.path }} " target="_blank">
-								<div class="">
-									{{ link.icon | raw }}
-								</div>
-								{{ link.label }}
-							</a>
-						</li>
-					{% endfor %}
+				<p class="text-gray-500 my-2 w-3/4 line-clamp-1	 ">
+					{{ project.description  }}
+				</p>
 
-				</ul>
 				{# TECHNOLOGIES #}
-				<ul name="technologies" class="flex gap-2">
+				<ul name="technologies" class="flex flex-wrap gap-2 pt-3">
 
 					{% for technology in project.technologies %}
-						<li class=" text-sm font-[200] flex gap-1 items-center">
-							<svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" viewbox="0 0 24 24"><path fill="{{technology.color}}" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
+						<li class=" text-sm text-gray-500 flex gap-1 items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="{{technology.color}}" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
 							{{ technology.name }}
 						</li>
 					{% endfor %}
+					<li class="max-lg:ml-1 ml-2 text-sm text-gray-500">
+						Updated on
+						{{ project.updatedAt|date("F j, Y") }}
+					</li>
 				</ul>
 
 				{# DETAIL #}
-				<div class="hidden detail pb-4 ">
-					<hr class="border-color my-2">
-					<div name="project content" class="">
+				<div
+					class="hidden detail">
+					{# LINKS #}
+					<ul name="links" class="flex gap-2 py-2">
+
+						{% for link in project.links %}
+							<li>
+								<a class="link btn-link " href=" {{ link.path }} " target="_blank">
+
+									{% if link.icon is not empty %}
+
+										<div class="text-gray-200 pr-2">
+											{{ link.icon | raw }}
+										</div>
+									{% endif %}
+									{{ link.label }}
+								</a>
+							</li>
+						{% endfor %}
+
+					</ul>
+					<hr class="border-color">
+					<div name="project-content" class="p-4 max-lg:p-2">
 						{{ project.detail | raw }}
 					</div>
 					{% if  project.projectImages |length > 1 %}
 						<hr class="border-color my-2">
-						<div class="carousel mx-auto h-[480px] w-full relative max-w-3xl">
-							<div class="carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
-								<button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color ">
+						<div autoplay class="carousel m-auto mt-4 w-4/5 max-lg:w-full relative">
+							<div class="max-sm:hidden carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
+								<button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color">
 									<svg class=" m-auto rotate-90 " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
 										<path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
 									</svg>
@@ -68,10 +86,10 @@
 								</button>
 							</div>
 
-							<div class="carousel-container h-full mx-auto ">
-								<div class="carousel-items cursor-pointer w-full h-full flex overflow-x-hidden snap-mandatory snap-x ">
+							<div class="carousel-container h-full w-full">
+								<div class="carousel-items cursor-pointer flex items-center  overflow-y-hidden  sm:overflow-x-hidden snap-mandatory snap-x h-full w-full">
 									{% for images in project.projectImages%}
-										<img class="w-full h-full image flex-shrink-0 object-scale-down snap-center" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
+										<img class="image snap-center object-cover w-full" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
 									{% endfor %}
 								</div>
 							</div>

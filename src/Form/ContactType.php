@@ -83,7 +83,7 @@ class ContactType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'submit',
                 'attr' => [
-                    'class' => 'bg-blue w-full  max-lg:mt-6 h-10 rounded-sm font-bold  hover:opacity-95 active:opacity-80 cursor-pointer'
+                    'class' => 'bg-blue w-full  max-lg:mt-6 h-10 rounded-sm   hover:opacity-95 active:opacity-80 cursor-pointer'
                 ]
             ]);
     }

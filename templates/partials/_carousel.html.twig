@@ -1,7 +1,6 @@
-{# Carousel #}
-<div autoplay no-interaction class="carousel mx-auto h-[480px] w-full relative max-w-3xl">
-	<div class="carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
-		<button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color ">
+<div class="carousel m-auto mt-4 w-4/5 max-lg:w-full relative">
+	<div class="max-sm:hidden carousel-control absolute w-full h-full pointer-events-none	flex justify-between items-center px-2">
+		<button class="pointer-events-auto rounded-full bg-secondary opacity-85 hover:opacity-100 active:opacity-90 size-12 border-2 border-color">
 			<svg class=" m-auto rotate-90 " xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
 				<path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
 			</svg>
@@ -13,9 +12,9 @@
 		</button>
 	</div>
 
-	<div class="carousel-container h-full mx-auto ">
-		<div class="carousel-items cursor-pointer w-full h-full flex overflow-x-hidden snap-mandatory snap-x ">
-			<img class="w-full h-full image flex-shrink-0 object-scale-down snap-center" src="" alt="">
+	<div class="carousel-container h-full w-full">
+		<div class="carousel-items cursor-pointer flex items-center  overflow-y-hidden  sm:overflow-x-hidden snap-mandatory snap-x h-full w-full">
+			<img class="image snap-center object-cover w-full" src="" alt=" ">
 		</div>
-
 	</div>
+</div>

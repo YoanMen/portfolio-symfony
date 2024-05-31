@@ -32,9 +32,11 @@ class ProjectCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', 'Nom'),
-            TextField::new('detail', 'Description')->onlyOnIndex(),
+            TextField::new('description', 'Description'),
 
-            TextEditorField::new('detail', 'Description')->onlyOnForms()
+            TextField::new('detail', 'Détail')->onlyOnIndex(),
+
+            TextEditorField::new('detail', 'Détail')->onlyOnForms()
                 ->setNumOfRows(15)
                 ->setColumns(15),
 

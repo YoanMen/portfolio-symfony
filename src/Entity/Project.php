@@ -52,6 +52,10 @@ class Project
     #[ORM\OneToMany(targetEntity: ProjectImage::class, mappedBy: 'project', cascade: ['persist'], orphanRemoval: true)]
     private Collection $projectImages;
 
+    #[ORM\Column(length: 120)]
+    #[Assert\Length(max: 120)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->links = new ArrayCollection();
@@ -200,6 +204,18 @@ class Project
                 $projectImage->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

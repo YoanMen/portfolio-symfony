@@ -33,9 +33,7 @@ class Link
 
     private ?string $label = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank()]
-
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $icon = null;
 
     #[ORM\Column]

@@ -15,8 +15,7 @@ class BlogController extends AbstractController
   {
 
     $page = $request->query->getInt("page", 1);
-    $search = $request->query->getString("search", '');
-
+    $search = htmlspecialchars($request->query->getString("search", ''));
     $limit = 5;
 
     $blogs = $blogRepository->paginateBlogs(trim($search), $page, $limit);

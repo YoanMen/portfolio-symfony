@@ -8,7 +8,9 @@ export class TabManager {
   setTabInteractive() {
     // delete old listener to avoid duplication
     this.previousTabs.forEach(({ tab, listener }) => {
-      tab.removeEventListener("click", listener);
+      const button = tab.querySelector(".see-more-js");
+
+      button.removeEventListener("click", listener);
     });
 
     // get all tab's
@@ -16,24 +18,16 @@ export class TabManager {
 
     tabs.forEach((tab) => {
       const listener = () => {
-        const links = tab.querySelectorAll(".link");
         const arrow = tab.querySelector(".arrow");
         arrow.classList.toggle("rotate-0");
-
-        if (links) {
-          links.forEach((link) => {
-            link.addEventListener("click", (e) => {
-              e.stopPropagation();
-            });
-          });
-        }
 
         const detail = tab.querySelector(".detail");
         detail.classList.toggle("fade");
         detail.classList.toggle("hidden");
       };
+      const button = tab.querySelector(".see-more-js");
 
-      tab.addEventListener("click", listener);
+      button.addEventListener("click", listener);
 
       // add to previous tab's
       this.previousTabs.push({ tab, listener });
