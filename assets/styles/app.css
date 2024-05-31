@@ -45,9 +45,13 @@ h4 {
     radial-gradient(var(--bg-color) 40%, var(--bg-color--secondary));
 }
 
+bg-opacity-0 .bg-secondary {
+  background-color: transparent;
+}
 .bg-secondary {
   background-color: var(--bg-color--secondary);
 }
+
 .bg-color {
   background-color: var(--bg-color);
 }
@@ -161,6 +165,10 @@ li {
   animation: fade linear 0.2s;
 }
 
+.fade-out {
+  opacity: 0;
+  animation: fade-out ease-in-out 0.2s;
+}
 .fade-right--anime {
   animation: fade-right ease-in-out 0.15s;
 }
@@ -175,5 +183,16 @@ li {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }

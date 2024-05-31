@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.querySelector(".menu");
+  let bgVisible = false;
+
   const marker = document.getElementById("marker-menu");
   const items = document.querySelectorAll(".menu-button");
 
@@ -40,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", function () {
     getCurrentSection();
+
+    // bg management for menu
+    if (window.scrollY > 0 && !bgVisible) {
+      bgVisible = true;
+      menu.classList.add("bg-secondary", "border-color");
+    } else if (window.scrollY == 0 && bgVisible) {
+      bgVisible = false;
+      menu.classList.remove("bg-secondary", "border-color");
+    }
   });
 
   // get current section and position marker
