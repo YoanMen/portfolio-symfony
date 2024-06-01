@@ -19,7 +19,7 @@ export class TabManager {
     tabs.forEach((tab) => {
       const listener = () => {
         const arrow = tab.querySelector(".arrow");
-        arrow.classList.toggle("rotate-0");
+        arrow.classList.toggle("rotate-90");
 
         const detail = tab.querySelector(".detail");
         detail.classList.toggle("fade");

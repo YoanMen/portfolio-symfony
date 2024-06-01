@@ -87,6 +87,6 @@ class ProjectImage
 
     public function __toString(): String
     {
-        return $this->imageName;
+        return $this->getImageName();
     }
 }

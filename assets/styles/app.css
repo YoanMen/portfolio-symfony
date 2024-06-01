@@ -23,8 +23,8 @@
   --blue-color: #3482f7;
   --font-color: black;
 
-  --button-link: #2e353f;
-  --button-link-hover: #3d4552;
+  --button-link: #f6f8faff;
+  --button-link-hover: rgb(236, 238, 240);
 }
 p,
 div,
@@ -45,10 +45,11 @@ h4 {
     radial-gradient(var(--bg-color) 40%, var(--bg-color--secondary));
 }
 
-bg-opacity-0 .bg-secondary {
-  background-color: transparent;
-}
 .bg-secondary {
+  background-color: var(--bg-color--secondary);
+}
+
+.menu-btn:hover {
   background-color: var(--bg-color--secondary);
 }
 
@@ -157,7 +158,11 @@ li {
   }
 
   .btn-link {
-    @apply flex items-center w-full rounded-lg border-[1px] p-2 border-color  max-w-max button-link-bg text-gray-200;
+    @apply flex items-center w-full rounded-lg border-[1px] p-[6px] px-3 border-color  max-w-max button-link-bg text-color;
+  }
+
+  .btn-submit {
+    @apply w-full rounded-lg border-[1px] p-[6px] px-3 border-color  button-link-bg text-color;
   }
 }
 

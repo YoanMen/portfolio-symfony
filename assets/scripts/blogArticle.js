@@ -61,15 +61,15 @@ export class Article {
     ${this.blog.name}
       </h3>
       <button class="link btn-link see-more-js">
-      <div class="text-gray-200 pr-2">
-        Show more
-      </div>
-      <svg class=" arrow transition-all duration-150 ease-in-out -rotate-90" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 1024 1024">
-        <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496"/>
-      </svg>
-    </button>
+				<div class="text-color text-sm pr-2 font-light ">
+					Show more
+				</div>
+				<svg class=" arrow transition-all duration-150 ease-in-out rotate-0" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24">
+					<path fill="currentColor" d="M8 5v14l11-7z"/>
+				</svg>
+			</button>
     </div>
-    <p  class="text-sm text-gray-500  pt-3">
+    <p  class="text-sm text-gray-500 pt-3">
       Created at ${formatedDate}
     </p>
     <div class="hidden detail pb-4">

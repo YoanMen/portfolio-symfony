@@ -1,12 +1,12 @@
+/* Variables Globales */
 :root {
+  /* Couleurs de fond */
   --bg-color: #0d1117;
   --bg-color--secondary: #010409;
   --border-color: #30363d;
   --blue-color: #2276f5;
   --error-color: red;
 
-  /* override style */
-  --user-avatar-icon-bg: var(--bg-color--secondary);
   --body-bg: #0d1117;
   --body-max-width: 100%;
   --font-size-base: 15px;
@@ -15,6 +15,7 @@
   /* text color */
   --text-color: white;
   --text-color-dark: white;
+
   /* button */
   --button-primary-bg: var(--blue-color);
   --button-primary-color: white;
@@ -24,6 +25,7 @@
   --button-active-shadow: none;
   --button-shadow: none;
   --button-hover-shadow: none;
+
   /* Input and form */
   --form-control-bg: var(--bg-color);
   --form-input-border-color: var(--border-color);
@@ -81,8 +83,7 @@
   --dropdown-toggle-bg: transparent;
   --dropdown-toggle-border-color: var(--border-color);
   --dropdown-link-hover-bg: var(--border-color);
-  --dropdown-border-color: var(--border-color);
-  --dropdown-icon-color: white;
+
   /* other */
   --resize-handler-hover-bg: var(--blue-color);
   --content-top-border-color: var(--border-color);
@@ -108,7 +109,7 @@
   --form-type-autocomplete-multi-item-bg: var(--blue-color);
   --form-type-autocomplete-multi-item-border-color: var(--border-color);
   --form-type-collection-item-collapsed-hover-bg: var(--blue-color);
-  --form-type-autocomplete-multi-item-remove-button-hover-bg: var(--blue-color);
+
   /* accordion */
   --bs-accordion-btn-color: red;
 
@@ -116,9 +117,6 @@
   --datagrid-noresults-placeholder-bg: var(--border-color);
 }
 
-.content-top {
-  background-color: var(--bg-color--secondary);
-}
 /* dropdown menu */
 .dropdown-menu {
   background-color: var(--bg-color);

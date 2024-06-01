@@ -25,11 +25,11 @@
 				<label for="username">Username :</label>
 
 				<input class="w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px]" type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-				<label class=" mt-6" for="password">Password :</label>
+				<label class=" mt-2" for="password">Password :</label>
 				<input class="w-full h-10 text-color placeholder-gray-500 bg-transparent p-2 border-color outline-0 rounded focus:border-[#2276f5] focus:border-[1px] border-[1px]" type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-				<button class="text-2xl rounded bg-blue text-white px-6 py-4 mt-8 hover:opacity-95" type="submit">
+				<button class="w-full rounded border-[1px] p-2 px-3 border-color font-medium button-link-bg text-color	mt-10" type="submit">
 					Sign In
 				</button>
 			</form>
