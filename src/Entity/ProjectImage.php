@@ -6,6 +6,7 @@ use App\Repository\ProjectImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectImageRepository::class)]
 #[Vich\Uploadable]
@@ -15,7 +16,9 @@ class ProjectImage
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
     #[Vich\UploadableField(mapping: 'projects', fileNameProperty: 'imageName', size: 'imageSize')]
+
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -87,6 +90,6 @@ class ProjectImage
 
     public function __toString(): String
     {
-        return $this->getImageName();
+        return $this->getImageName() ?? 'fichier non valide';
     }
 }

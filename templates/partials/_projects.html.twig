@@ -7,11 +7,11 @@
 	</h2>
 	<p name="introduction" class=" mb-4">As I look back on my journey, I've had the opportunity to work on various web and mobile application projects.
 	</p>
-	<div name="article-container" class="flex flex-col gap-6 ">
+	<div name="article-container" class="flex flex-col ">
 		{% for project in projects %}
-			<article class="tab px-2 max-lg:px-0 py-4 border-color border-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">
-				<div class="flex  justify-between items-center ">
-					<h3 class="text-blue font-medium text-2xl  ">
+			<article class="tab px-2 max-lg:px-0 py-8 border-color first:border-t-[1px] last:border-b-0  border-b-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">
+				<div class="flex justify-between items-center">
+					<h3 class="text-blue font-medium text-2xl">
 						{{ project.name }}
 					</h3>
 					<button class="link btn-link see-more-js">
@@ -26,20 +26,20 @@
 				</div>
 
 
-				<p class="text-gray-500 my-2 w-3/4 line-clamp-1	 ">
+				<p class="text-color opacity-60 my-2 w-3/4 line-clamp-1	 ">
 					{{ project.description  }}
 				</p>
 
 				{# TECHNOLOGIES #}
-				<ul name="technologies" class="flex flex-wrap gap-2 pt-3">
+				<ul name="technologies" class="flex flex-wrap gap-2 pt-2">
 
 					{% for technology in project.technologies %}
-						<li class=" text-sm text-gray-500 flex gap-1 items-center">
+						<li class=" text-sm text-color opacity-60  flex gap-1 items-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24"><path fill="{{technology.color}}" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
 							{{ technology.name }}
 						</li>
 					{% endfor %}
-					<li class="max-lg:ml-1 ml-2 text-sm text-gray-500">
+					<li class="max-lg:ml-1 ml-2 text-sm text-color opacity-60 ">
 						Updated on
 						{{ project.updatedAt|date("F j, Y") }}
 					</li>
@@ -57,7 +57,7 @@
 
 									{% if link.icon is not empty %}
 
-										<div class="text-gray-200 pr-2">
+										<div class="text-color pr-2">
 											{{ link.icon | raw }}
 										</div>
 									{% endif %}
@@ -89,12 +89,12 @@
 							<div class="carousel-container h-full w-full">
 								<div class="carousel-items cursor-pointer flex items-center  overflow-y-hidden  sm:overflow-x-hidden snap-mandatory snap-x h-full w-full">
 									{% for images in project.projectImages%}
-										<img class="image snap-center object-cover flex-shrink-0 w-full max-h-80" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
+										<img class="image snap-center object-cover flex-shrink-0 w-full max-h-80  last:max-sm:hidden" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
 									{% endfor %}
 								</div>
 							</div>
-						{% endif %}
-					</div>
+						</div>
+					{% endif %}
 				</div>
 			</article>
 		{% endfor %}

@@ -60,7 +60,7 @@ window.onload = () => {
     data.forEach((blog) => {
       const article = new Article(blog);
 
-      content = article.createArticle();
+      content += article.createArticle();
     });
 
     blogsContainer.insertAdjacentHTML("afterbegin", content);

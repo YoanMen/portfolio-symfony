@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Form\LinkType;
 use App\Entity\Project;
 use App\Form\ProjectImageType;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -65,5 +66,12 @@ class ProjectCrudController extends AbstractCrudController
                 ->setEntryType(ProjectImageType::class)->onlyOnForms(),
 
         ];
+    }
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
     }
 }

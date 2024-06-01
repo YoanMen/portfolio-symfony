@@ -49,7 +49,9 @@ class Project
     /**
      * @var Collection<int, ProjectImage>
      */
+
     #[ORM\OneToMany(targetEntity: ProjectImage::class, mappedBy: 'project', cascade: ['persist'], orphanRemoval: true)]
+
     private Collection $projectImages;
 
     #[ORM\Column(length: 120)]
