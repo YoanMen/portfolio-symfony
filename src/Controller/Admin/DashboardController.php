@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Blog;
 use App\Entity\Link;
 use App\Entity\About;
+use App\Entity\LinkIcon;
 use App\Entity\Project;
 use App\Entity\Technology;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -47,6 +48,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('sous-données');
         yield MenuItem::linkToCrud('Liens', 'fas fa-link', Link::class);
         yield MenuItem::linkToCrud('Technologies', 'fas fa-gear', Technology::class);
+        yield MenuItem::linkToCrud('Icône des liens', 'fas fa-icons', LinkIcon::class);
+
         yield MenuItem::section();
         yield  MenuItem::linkToLogout('Logout', 'fa fa-sign-out');
     }

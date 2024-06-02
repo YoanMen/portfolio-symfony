@@ -51,17 +51,15 @@
 					{# LINKS #}
 					<ul name="links" class="flex gap-2 py-2">
 
-						{% for link in project.links %}
+						{% for link in project.getLinks() %}
 							<li>
-								<a class="link btn-link " href=" {{ link.path }} " target="_blank">
-
-									{% if link.icon is not empty %}
-
-										<div class="text-color pr-2">
-											{{ link.icon | raw }}
+								<a class="link btn-primary bg-secondary " href=" {{ link.path }} " target="_blank">
+									{% if link.getLinkIcon() is not empty %}
+										<div class="text-color">
+											{{ link.linkIcon.icon | raw }}
 										</div>
 									{% endif %}
-									{{ link.label }}
+									{{ link.linkIcon.name }}
 								</a>
 							</li>
 						{% endfor %}

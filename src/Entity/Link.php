@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\LinkRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,15 +26,6 @@ class Link
 
     private ?string $path = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 3, max: 255)]
-    #[Assert\NotBlank()]
-
-    private ?string $label = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $icon = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -52,6 +42,10 @@ class Link
     #[Assert\NotBlank()]
 
     private ?string $name = null;
+
+    #[ORM\ManyToOne(inversedBy: 'link')]
+    private ?LinkIcon $linkIcon = null;
+
 
 
     public function __construct()
@@ -77,18 +71,6 @@ class Link
     public function setPath(string $path): static
     {
         $this->path = $path;
-
-        return $this;
-    }
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): static
-    {
-        $this->icon = $icon;
 
         return $this;
     }
@@ -153,19 +135,18 @@ class Link
         return $this;
     }
 
-    public function getLabel(): ?string
+
+    public function getLinkIcon(): ?LinkIcon
     {
-        return $this->label;
+        return $this->linkIcon;
     }
 
-    public function setLabel(string $label): static
+    public function setLinkIcon(?LinkIcon $linkIcon): static
     {
-        $this->label = $label;
+        $this->linkIcon = $linkIcon;
 
         return $this;
     }
-
-
 
     public function __toString(): String
     {

@@ -34,13 +34,9 @@ class ProjectCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'Nom'),
             TextField::new('description', 'Description'),
-
-            TextField::new('detail', 'Détail')->onlyOnIndex(),
-
-            TextEditorField::new('detail', 'Détail')->onlyOnForms()
+            TextEditorField::new('detail', 'Détail')
                 ->setNumOfRows(15)
                 ->setColumns(15),
-
             AssociationField::new('links', 'Liens externe')
                 ->setFormTypeOptions([
                     'by_reference' => false,
@@ -56,15 +52,11 @@ class ProjectCrudController extends AbstractCrudController
             AssociationField::new('projectImages', 'Images')->onlyOnIndex(),
             CollectionField::new('Links', 'Créer des liens externe')
                 ->setEntryType(LinkType::class)
-                ->setFormTypeOptions([
-                    'required' => true,
-                ])
                 ->allowAdd()
                 ->allowDelete()
                 ->onlyOnForms(),
             CollectionField::new('projectImages', 'Ajouter des images')
                 ->setEntryType(ProjectImageType::class)->onlyOnForms(),
-
         ];
     }
 

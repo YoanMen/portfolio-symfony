@@ -40,4 +40,4 @@ class ContactController extends AbstractController
       return new JsonResponse(['success' => false, 'error' => "Error cant sent mail, data not valid"]);
     }
   }
-} 
+}

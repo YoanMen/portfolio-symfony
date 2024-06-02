@@ -6,7 +6,6 @@ use App\Entity\User as AppUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
-use Symfony\Component\Security\Core\Exception\AccountExpiredException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
 
 class UserChecker implements UserCheckerInterface
@@ -24,7 +23,7 @@ class UserChecker implements UserCheckerInterface
 
     $authAttempt = $user->getAuthAttempt();
 
-    if ($authAttempt && $authAttempt->getAttempt() > 5) {
+    if ($authAttempt && $authAttempt->getAttempt() > 4) {
       throw new CustomUserMessageAccountStatusException('Your account has been locked due to too many failed login attempts.');
     }
   }
