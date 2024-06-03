@@ -48,6 +48,7 @@ class ProjectCrudController extends AbstractCrudController
                     'by_reference' => false,
                     'multiple' => true,
                     'choice_label' => 'name',
+                    'required' => true
                 ]),
             AssociationField::new('projectImages', 'Images')->onlyOnIndex(),
             CollectionField::new('Links', 'Créer des liens externe')

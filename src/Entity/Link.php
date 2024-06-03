@@ -32,10 +32,7 @@ class Link
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    /**
-     * @var Collection<int, Project>
-     */
-    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'links')]
+
     private Collection $projectID;
 
     #[ORM\Column(length: 60)]
@@ -45,6 +42,10 @@ class Link
 
     #[ORM\ManyToOne(inversedBy: 'link')]
     private ?LinkIcon $linkIcon = null;
+
+    #[ORM\ManyToOne(inversedBy: 'links')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Project $project = null;
 
 
 
@@ -99,29 +100,7 @@ class Link
         return $this;
     }
 
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getProjectID(): Collection
-    {
-        return $this->projectID;
-    }
 
-    public function addProjectID(Project $projectID): static
-    {
-        if (!$this->projectID->contains($projectID)) {
-            $this->projectID->add($projectID);
-        }
-
-        return $this;
-    }
-
-    public function removeProjectID(Project $projectID): static
-    {
-        $this->projectID->removeElement($projectID);
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
@@ -151,5 +130,17 @@ class Link
     public function __toString(): String
     {
         return $this->getName();
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): static
+    {
+        $this->project = $project;
+
+        return $this;
     }
 }

@@ -33,16 +33,13 @@ class Project
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
-    /**
-     * @var Collection<int, Link>
-     */
-    #[ORM\ManyToMany(targetEntity: Link::class, mappedBy: 'projectID', cascade: ['persist', 'remove'], orphanRemoval: true)]
-    private Collection $links;
+
 
     /**
      * @var Collection<int, Technology>
      */
     #[ORM\ManyToMany(targetEntity: Technology::class, mappedBy: 'projectID')]
+    #[Assert\NotBlank()]
     private Collection $technologies;
 
     /**
@@ -57,9 +54,15 @@ class Project
     #[Assert\Length(max: 120)]
     private ?string $description = null;
 
+    /**
+     * @var Collection<int, Link>
+     */
+    #[ORM\OneToMany(targetEntity: Link::class, mappedBy: 'project', orphanRemoval: true, cascade: ['persist', 'remove'])]
+    private Collection $links;
+
     public function __construct()
     {
-        $this->links = new ArrayCollection();
+
         $this->technologies = new ArrayCollection();
         $this->projectImages = new ArrayCollection();
 
@@ -68,6 +71,7 @@ class Project
         }
 
         $this->updatedAt = new \DateTimeImmutable();
+        $this->links = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,32 +129,6 @@ class Project
 
 
 
-    /**
-     * @return Collection<int, Link>
-     */
-    public function getLinks(): Collection
-    {
-        return $this->links;
-    }
-
-    public function addLink(Link $link): static
-    {
-        if (!$this->links->contains($link)) {
-            $this->links->add($link);
-            $link->addProjectID($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLink(Link $link): static
-    {
-        if ($this->links->removeElement($link)) {
-            $link->removeProjectID($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Technology>
@@ -217,6 +195,36 @@ class Project
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Link>
+     */
+    public function getLinks(): Collection
+    {
+        return $this->links;
+    }
+
+    public function addLink(Link $link): static
+    {
+        if (!$this->links->contains($link)) {
+            $this->links->add($link);
+            $link->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLink(Link $link): static
+    {
+        if ($this->links->removeElement($link)) {
+            // set the owning side to null (unless already changed)
+            if ($link->getProject() === $this) {
+                $link->setProject(null);
+            }
+        }
 
         return $this;
     }
