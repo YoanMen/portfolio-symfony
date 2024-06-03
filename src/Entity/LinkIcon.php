@@ -33,6 +33,7 @@ class LinkIcon
         $this->link = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,5 +91,10 @@ class LinkIcon
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getIcon();
     }
 }

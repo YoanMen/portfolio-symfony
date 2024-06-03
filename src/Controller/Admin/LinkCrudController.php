@@ -39,12 +39,13 @@ class LinkCrudController extends AbstractCrudController
 
             TextField::new('name', 'nom')->setColumns(3),
             UrlField::new('path', 'lien'),
+            TextField::new('linkIcon', 'icon')->renderAsHtml(),
             AssociationField::new('linkIcon', 'Icon')
                 ->setFormTypeOptions([
                     'by_reference' => true,
                     'multiple' => false,
                     'choice_label' => 'name',
-                ]),
+                ])->onlyOnForms(),
         ];
     }
 }

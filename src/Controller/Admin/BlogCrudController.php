@@ -4,9 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Blog;
 use App\Form\BlogImageType;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -34,7 +32,7 @@ class BlogCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', "Titre"),
-            TextField::new('detail', 'Article')->onlyOnIndex(),
+            TextEditorField::new('detail', 'Article')->onlyOnIndex(),
             TextEditorField::new('detail', 'Article')->setTrixEditorConfig([
                 'blockAttributes' => [
                     'default' => ['tagName' => 'p'],
