@@ -1,0 +1,36 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}{% endblock %}
+
+{% block main %}
+	<div class="container mx-auto row px-md-4">
+
+		<div class="col mb-5">
+
+			{{ render_chart(chart) }}
+		</div>
+
+		<div class="col">
+			<h2 class="mb-4 h4">Dernière tentative de connection</h2>
+			<div class="table-responsive small">
+				<table class="table table-striped table-md">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Adresse IP</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								{{ attempt.getAttemptAt() }}
+							</td>
+							<td>{{ attempt.getIp() }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

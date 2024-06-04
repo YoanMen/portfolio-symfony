@@ -68,9 +68,9 @@ class AuthAttempt
         return $this;
     }
 
-    public function getAttemptAt(): ?\DateTimeImmutable
+    public function getAttemptAt(): string
     {
-        return $this->attemptAt;
+        return $this->attemptAt->format('d/m/Y');
     }
 
     public function setAttemptAt(\DateTimeImmutable $attemptAt): static
