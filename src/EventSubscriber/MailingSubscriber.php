@@ -25,7 +25,7 @@ class MailingSubscriber implements EventSubscriberInterface
         $mail = (new TemplatedEmail())
             ->to($this->email)
             ->subject("Message du portfolio par " . $data->name)
-            ->from($data->email)
+            ->from($this->email)
             ->htmlTemplate('email/contact.html.twig')
             ->context(['data' => $data]);
 
