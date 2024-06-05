@@ -22,8 +22,17 @@ export class Article {
                     <div class="carousel-container h-full w-full">
                       <div class="carousel-items cursor-zoom-in	 flex items-center  overflow-y-hidden  sm:overflow-x-hidden snap-mandatory snap-x h-full w-full">`;
 
+    const totalImages = this.blog.blogImages.length;
+    console.log(totalImages);
+
+    let hiddenLast = "";
+
+    if (totalImages > 1) {
+      hiddenLast = "last:max-sm:hidden";
+    }
+
     this.blog.blogImages.forEach((image) => {
-      content += `<img class="image snap-center object-cover flex-shrink-0 w-full max-h-80 last:max-sm:hidden" src="/images/articles/${image.imageName}">`;
+      content += `<img class="image snap-center object-cover flex-shrink-0 w-full max-h-80 ${hiddenLast}" src="/images/articles/${image.imageName}">`;
     });
 
     content += "</div></div>";
