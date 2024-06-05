@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class MailingSubscriber implements EventSubscriberInterface
 {
 
-    private string $email = "contact@yoanmenard.com";
+    private string $email = "noreply@yoanmenard.com";
     public function __construct(private readonly MailerInterface $mailer)
     {
     }
