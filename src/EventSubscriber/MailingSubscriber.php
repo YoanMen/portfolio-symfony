@@ -13,7 +13,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class MailingSubscriber implements EventSubscriberInterface
 {
 
-    private string $email = "noreply@yoanmenard.com";
     public function __construct(private readonly MailerInterface $mailer)
     {
     }
@@ -23,9 +22,9 @@ class MailingSubscriber implements EventSubscriberInterface
 
         $data = $event->data;
         $mail = (new TemplatedEmail())
-            ->to($this->email)
+            ->to('contact@yoanmenard.com')
             ->subject("Message du portfolio par " . $data->name)
-            ->from($data->email)
+            ->from('noreply@yoanmenard.com')
             ->htmlTemplate('email/contact.html.twig')
             ->context(['data' => $data]);
 
@@ -35,8 +34,8 @@ class MailingSubscriber implements EventSubscriberInterface
     public function onAccountLockedRequestEvent(AccountLockedRequestEvent $event): void
     {
         $mail = (new Email())
-            ->from($this->email)
-            ->to($this->email)
+            ->from('noreply@yoanmenard.com')
+            ->to('contact@yoanmenard.com')
             ->subject('ACCOUNT LOCKED')
             ->text('Your account has been locked');
 
