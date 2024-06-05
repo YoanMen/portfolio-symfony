@@ -21,8 +21,8 @@ class AboutCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle("index", "A propos")
-            ->setPageTitle('edit', 'Modification du à propos')
+        return $crud->setPageTitle("index", "About")
+            ->setPageTitle('edit', 'Edit about')
             ->setSearchFields(null);
     }
 
@@ -32,8 +32,8 @@ class AboutCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('description', 'A propos')->onlyOnIndex()->renderAsHtml(),
-            TextEditorField::new('description', 'A propos')->setTrixEditorConfig([
+            TextField::new('description', 'About')->onlyOnIndex()->renderAsHtml(),
+            TextEditorField::new('description', 'About')->setTrixEditorConfig([
                 'blockAttributes' => [
                     'default' => ['tagName' => 'p'],
                     'heading1' => ['tagName' => 'h3'],

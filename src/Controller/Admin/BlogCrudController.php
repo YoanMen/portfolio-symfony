@@ -21,9 +21,9 @@ class BlogCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud->setPageTitle('index', "Blog")
-            ->setPageTitle('edit', 'Modification d\'un article de Blog')
-            ->setPageTitle('detail', 'Détails d\'un article de blog')
-            ->setPageTitle('new', 'Création d\'un article de Blog')
+            ->setPageTitle('edit', 'Edit a article')
+            ->setPageTitle('detail', 'Detail of article')
+            ->setPageTitle('new', 'Create a article')
             ->setDateFormat('   dd/MM/Y')
             ->setPaginatorPageSize(10);
     }
@@ -31,7 +31,7 @@ class BlogCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', "Titre"),
+            TextField::new('name', "Title"),
             TextEditorField::new('detail', 'Article')->onlyOnIndex(),
             TextEditorField::new('detail', 'Article')->setTrixEditorConfig([
                 'blockAttributes' => [
@@ -44,7 +44,7 @@ class BlogCrudController extends AbstractCrudController
             ])
                 ->onlyOnForms()
                 ->setColumns(12)->setNumOfRows(25),
-            CollectionField::new('blogImages', 'Ajouter des images')
+            CollectionField::new('blogImages', 'Insert images')
                 ->setEntryType(BlogImageType::class)->onlyOnForms(),
             AssociationField::new('blogImages', 'Images')->onlyOnIndex()
 

@@ -23,21 +23,19 @@ class ProjectCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Projets')
-            ->setPageTitle('edit', 'Modification d\'un projet')
-            ->setPageTitle('new', 'Création d\'un nouveau projet')
-            ->setDateFormat('   dd/MM/Y');
+        return $crud->setPageTitle('index', 'Projects')
+            ->setDateFormat('dd/MM/Y');
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom'),
+            TextField::new('name', 'Name'),
             TextField::new('description', 'Description'),
-            TextEditorField::new('detail', 'Détail')
+            TextEditorField::new('detail', 'Detail')
                 ->setNumOfRows(15)
                 ->setColumns(15),
-            AssociationField::new('links', 'Liens externe')
+            AssociationField::new('links', 'External links')
                 ->setFormTypeOptions([
                     'by_reference' => false,
                     'multiple' => true,
@@ -51,12 +49,12 @@ class ProjectCrudController extends AbstractCrudController
                     'required' => true
                 ]),
             AssociationField::new('projectImages', 'Images')->onlyOnIndex(),
-            CollectionField::new('Links', 'Créer des liens externe')
+            CollectionField::new('Links', 'Create external links')
                 ->setEntryType(LinkType::class)
                 ->allowAdd()
                 ->allowDelete()
                 ->onlyOnForms(),
-            CollectionField::new('projectImages', 'Ajouter des images')
+            CollectionField::new('projectImages', 'Insert images')
                 ->setEntryType(ProjectImageType::class)->onlyOnForms(),
         ];
     }

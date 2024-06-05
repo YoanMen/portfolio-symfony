@@ -18,16 +18,14 @@ class TechnologyCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle('index', 'Technologie')
-            ->setPageTitle('edit', 'Modifier une technologie')
-            ->setPageTitle('new', 'Ajouter une nouvelle technologie');
+        return $crud->setPageTitle('index', 'Technology');
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom')->setColumns(2),
-            ColorField::new('color', 'Couleur')->setColumns(1),
+            TextField::new('name', 'Name')->setColumns(2),
+            ColorField::new('color', 'Color')->setColumns(1),
         ];
     }
 }

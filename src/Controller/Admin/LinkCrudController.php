@@ -24,8 +24,8 @@ class LinkCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud->setPageTitle('index', 'Liens')
-            ->setPageTitle('edit', 'Modifier un lien')
-            ->setPageTitle('new', 'Ajouter un lien');
+            ->setPageTitle('edit', 'Edit a link')
+            ->setPageTitle('new', 'Create a link');
     }
 
     public function configureActions(Actions $actions): Actions
@@ -37,10 +37,10 @@ class LinkCrudController extends AbstractCrudController
     {
         return [
 
-            TextField::new('name', 'nom')->setColumns(3),
-            UrlField::new('path', 'lien'),
+            TextField::new('name', 'name')->setColumns(3),
+            UrlField::new('path', 'link'),
             TextField::new('linkIcon', 'icon')->renderAsHtml(),
-            AssociationField::new('linkIcon', 'Icon')
+            AssociationField::new('linkIcon', 'icon')
                 ->setFormTypeOptions([
                     'by_reference' => true,
                     'multiple' => false,

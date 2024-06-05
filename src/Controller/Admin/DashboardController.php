@@ -16,7 +16,6 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -60,18 +59,18 @@ class DashboardController extends AbstractDashboardController
         if (!$this->isGranted('ROLE_ADMIN')) {
             throw new AccessDeniedException();
         }
-        yield MenuItem::linkToUrl('Retour au site', 'fas fa-home',  '/');
+        yield MenuItem::linkToUrl('Back to Website', 'fas fa-home',  '/');
 
 
-        yield MenuItem::section('données');
+        yield MenuItem::section();
         yield MenuItem::LinkToDashboard("Dashboard", "fas fa-chart-line");
-        yield MenuItem::linkToCrud('A propos', 'fas fa-info', About::class);
-        yield MenuItem::linkToCrud('Projets', 'fas fa-book', Project::class);
+        yield MenuItem::linkToCrud('About', 'fas fa-info', About::class);
+        yield MenuItem::linkToCrud('Project', 'fas fa-book', Project::class);
         yield MenuItem::linkToCrud('Blog', 'fas fa-blog', Blog::class);
-        yield MenuItem::section('sous-données');
-        yield MenuItem::linkToCrud('Liens', 'fas fa-link', Link::class);
-        yield MenuItem::linkToCrud('Technologies', 'fas fa-gear', Technology::class);
-        yield MenuItem::linkToCrud('Icône des liens', 'fas fa-icons', LinkIcon::class);
+        yield MenuItem::section();
+        yield MenuItem::linkToCrud('Link', 'fas fa-link', Link::class);
+        yield MenuItem::linkToCrud('Technology', 'fas fa-gear', Technology::class);
+        yield MenuItem::linkToCrud('Link icon', 'fas fa-icons', LinkIcon::class);
 
         yield MenuItem::section();
         yield  MenuItem::linkToLogout('Logout', 'fa fa-sign-out');
@@ -81,7 +80,7 @@ class DashboardController extends AbstractDashboardController
     {
         return parent::configureUserMenu($user)
             ->addMenuItems([
-                MenuItem::linkToUrl('Retour au site', 'fas fa-home',  '/'),
+                MenuItem::linkToUrl('Back to Website', 'fas fa-home',  '/'),
             ])
             ->displayUserAvatar(false);
     }
@@ -122,7 +121,7 @@ class DashboardController extends AbstractDashboardController
             'labels' => $formattedDates,
             'datasets' => [
                 [
-                    'label' => 'nombre de visiteurs',
+                    'label' => 'number of visitors',
                     'backgroundColor' => '#2276f5',
                     'borderColor' => '#30363d',
                     'data' => $clicks,
