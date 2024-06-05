@@ -23,8 +23,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
-use function PHPSTORM_META\map;
-
 class DashboardController extends AbstractDashboardController
 {
 
@@ -99,6 +97,11 @@ class DashboardController extends AbstractDashboardController
 
         $repository =  $this->documentManager->getRepository(Visitors::class);
 
+
+        if (!$repository) {
+            // empty chart
+            return $this->chartBuilder->createChart(Chart::TYPE_LINE);
+        }
         $visitors = $repository->createQueryBuilder()
             ->sort(['date' => 'desc'])
             ->limit(10)
