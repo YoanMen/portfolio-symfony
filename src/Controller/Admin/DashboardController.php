@@ -95,13 +95,12 @@ class DashboardController extends AbstractDashboardController
     public function setChart()
     {
 
+        return $this->chartBuilder->createChart(Chart::TYPE_LINE);
         $repository =  $this->documentManager->getRepository(Visitors::class);
 
 
-        if (!$repository) {
-            // empty chart
-            return $this->chartBuilder->createChart(Chart::TYPE_LINE);
-        }
+
+
         $visitors = $repository->createQueryBuilder()
             ->sort(['date' => 'desc'])
             ->limit(10)

@@ -17,6 +17,9 @@ final class SessionListener
     #[AsEventListener(event: KernelEvents::REQUEST)]
     public function onKernelRequest(RequestEvent $event)
     {
+
+        return;
+
         $request = $event->getRequest();
         $session = $request->getSession();
 
