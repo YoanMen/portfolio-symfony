@@ -19,12 +19,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>
-								{{ attempt.getAttemptAt() }}
-							</td>
-							<td>{{ attempt.getIp() }}</td>
-						</tr>
+						{% if attempt is not null %}
+							<tr>
+								<td>
+									{{ attempt.getAttemptAt() }}
+								</td>
+								<td>{{ attempt.getIp() }}</td>
+							</tr>
+						{% endif %}
 					</tbody>
 				</table>
 			</div>
