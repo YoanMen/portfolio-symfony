@@ -89,7 +89,7 @@ class DashboardController extends AbstractDashboardController
     {
         return parent::configureAssets()
             ->addAssetMapperEntry('app')
-            ->addCssFile('/assets/styles/admin.css');
+            ->addCssFile('/styles/admin.css');
     }
 
 
