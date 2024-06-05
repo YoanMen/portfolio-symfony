@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
         $attempt = $this->authAttemptRepository->findAll();
         return $this->render('admin/dashboard.html.twig', [
             "attempt" => $attempt[0] ?? null,
-            'chart' => $this->setChart(),
+            'chart' => null,
         ]);
 
         // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
@@ -95,10 +95,7 @@ class DashboardController extends AbstractDashboardController
     public function setChart()
     {
 
-        return $this->chartBuilder->createChart(Chart::TYPE_LINE);
         $repository =  $this->documentManager->getRepository(Visitors::class);
-
-
 
 
         $visitors = $repository->createQueryBuilder()
