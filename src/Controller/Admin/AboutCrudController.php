@@ -21,7 +21,7 @@ class AboutCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setPageTitle("index", " A propos")
+        return $crud->setPageTitle("index", "A propos")
             ->setPageTitle('edit', 'Modification du à propos')
             ->setSearchFields(null);
     }

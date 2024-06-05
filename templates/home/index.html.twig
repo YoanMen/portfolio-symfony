@@ -71,8 +71,10 @@
 			</div>
 			About
 		</h2>
-		<div class=" ">
-			{{ about[0].description	| raw }}
+		<div>
+			{% if about is not null  %}
+				{{ about[0].description	| raw }}
+			{% endif %}
 		</div>
 
 	</section>
@@ -85,7 +87,7 @@
 
 	{# MODAL FOR IMG #}
 	<div id="modal-wrapper" class="fixed z-20 inset-0 hidden">
-		<div class="flex items-center justify-center min-h-screen bg-black bg-opacity-30">
+		<div class="flex items-center cursor-zoom-out	 justify-center min-h-screen bg-black bg-opacity-30">
 			<img class="image object-contain max-w-[95vw] max-h-[95vh]" src="" alt="">
 		</div>
 	</div>

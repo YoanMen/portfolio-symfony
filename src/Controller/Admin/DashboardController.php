@@ -16,6 +16,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -50,6 +51,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->disableDarkMode()
+            ->setFaviconPath('images/favicon.ico')
             ->setTitle('Admin Panel');
     }
 
@@ -92,6 +94,7 @@ class DashboardController extends AbstractDashboardController
     }
 
 
+
     public function setChart()
     {
 
@@ -101,6 +104,8 @@ class DashboardController extends AbstractDashboardController
             ->sort(['date' => 'desc'])
             ->limit(10)
             ->getQuery()->execute()->toArray();
+
+        $visitors = array_reverse($visitors);
 
         $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 
