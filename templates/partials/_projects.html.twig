@@ -87,11 +87,11 @@
 							<div class="carousel-container h-full w-full">
 								<div class="carousel-items cursor-zoom-in	flex overflow-y-hidden sm:overflow-x-hidden snap-mandatory snap-x">
 									{% for images in project.projectImages%}
-										<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px]" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
+										<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-96" src=" {{ vich_uploader_asset(images, 'imageFile') }}" alt=" ">
 
 									{% endfor %}
 									{% if project.projectImages | length > 1 %}
-										<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px] last:max-sm:hidden" src=" {{ vich_uploader_asset(project.projectImages[0], 'imageFile') }}" alt=" ">
+										<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-96 last:max-sm:hidden" src=" {{ vich_uploader_asset(project.projectImages[0], 'imageFile') }}" alt=" ">
 									{% endif %}
 								</div>
 							</div>

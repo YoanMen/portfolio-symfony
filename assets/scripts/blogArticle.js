@@ -27,13 +27,13 @@ export class Article {
 
     if (totalImages > 1) {
       this.blog.blogImages.forEach((image) => {
-        content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px]" src="/images/articles/${image.imageName}">`;
+        content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-96" src="/images/articles/${image.imageName}">`;
       });
 
       // duplicate first image for infinite scroll
-      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px] last:max-sm:hidden" src="/images/articles/${firstImage.imageName}">`;
+      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-96 last:max-sm:hidden" src="/images/articles/${firstImage.imageName}">`;
     } else {
-      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px]" src="/images/articles/${firstImage.imageName}">`;
+      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-96" src="/images/articles/${firstImage.imageName}">`;
     }
 
     content += "</div></div>";
