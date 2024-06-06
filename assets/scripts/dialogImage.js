@@ -2,6 +2,8 @@ export function ListenImage() {
   const images = document.querySelectorAll(".image");
   const modal = document.querySelector("#modal-wrapper");
   const body = document.querySelector("body");
+
+  console.log(images);
   images.forEach((image) => {
     image.addEventListener("click", (event) => {
       event.stopPropagation();

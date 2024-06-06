@@ -42,10 +42,6 @@ export class Carousel {
     // disable interaction if no interaction is set
     if (noInteraction) this.disableInteractionImage();
 
-    // clone first image to end
-    const image = this.items[0].cloneNode();
-    this.container.appendChild(image);
-
     // listen buttons
     this.previous();
     this.next();

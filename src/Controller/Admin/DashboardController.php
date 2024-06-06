@@ -86,8 +86,7 @@ class DashboardController extends AbstractDashboardController
     public function configureAssets(): Assets
     {
         return parent::configureAssets()
-            ->addAssetMapperEntry('app')
-            ->addCssFile('/styles/admin.css');
+            ->addAssetMapperEntry('admin/app');
     }
 
 

@@ -20,23 +20,23 @@ export class Article {
                       </button>
                     </div>
                     <div class="carousel-container h-full w-full">
-                      <div class="carousel-items cursor-zoom-in	 flex items-center  overflow-y-hidden  sm:overflow-x-hidden snap-mandatory snap-x h-full w-full">`;
+                      <div class="carousel-items cursor-zoom-in	flex overflow-y-hidden sm:overflow-x-hidden snap-mandatory snap-x">`;
 
     const totalImages = this.blog.blogImages.length;
-    console.log(totalImages);
-
-    let hiddenLast = "";
+    let firstImage = this.blog.blogImages[0];
 
     if (totalImages > 1) {
-      hiddenLast = "last:max-sm:hidden";
+      this.blog.blogImages.forEach((image) => {
+        content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px]" src="/images/articles/${image.imageName}">`;
+      });
+
+      // duplicate first image for infinite scroll
+      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px] last:max-sm:hidden" src="/images/articles/${firstImage.imageName}">`;
+    } else {
+      content += `<img class="image snap-center object-scale-down flex-shrink-0 w-full max-h-[480px]" src="/images/articles/${firstImage.imageName}">`;
     }
 
-    this.blog.blogImages.forEach((image) => {
-      content += `<img class="image snap-center object-cover flex-shrink-0 w-full max-h-80 ${hiddenLast}" src="/images/articles/${image.imageName}">`;
-    });
-
     content += "</div></div>";
-
     return content;
   }
 
@@ -47,8 +47,8 @@ export class Article {
       1: "Jan",
       2: "Feb",
       3: "March",
-      4: "May",
-      5: "April",
+      4: "April",
+      5: "May",
       6: "June",
       7: "July",
       8: "August",
@@ -59,7 +59,7 @@ export class Article {
     };
 
     const formatedDate = `${
-      month[date.getMonth()]
+      month[date.getMonth() + 1]
     } ${date.getDate()}, ${date.getFullYear()}`;
 
     return `<article class="tab px-2 max-lg:px-0 py-8 border-color first:border-t-[1px] last:border-b-0  border-b-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">

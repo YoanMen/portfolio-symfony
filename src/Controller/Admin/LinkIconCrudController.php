@@ -25,8 +25,11 @@ class LinkIconCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            TextareaField::new('icon')->setHelp('insert <a class="text-blue" href="https://icon-sets.iconify.design/" target="_blank">Iconify</a> svg code  ')->renderAsHtml(),
+            TextField::new('name')->setRequired(true),
+            TextareaField::new('icon')
+                ->setRequired(true)
+                ->setHelp('insert <a class="text-blue" href="https://icon-sets.iconify.design/" target="_blank">Iconify</a> svg code  ')
+                ->renderAsHtml(),
         ];
     }
 }

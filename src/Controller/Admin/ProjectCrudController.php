@@ -30,11 +30,12 @@ class ProjectCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Name'),
-            TextField::new('description', 'Description'),
+            TextField::new('name', 'Name')->setRequired(true),
+            TextField::new('description', 'Description')->setRequired(true),
             TextEditorField::new('detail', 'Detail')
                 ->setNumOfRows(15)
-                ->setColumns(15),
+                ->setColumns(15)
+                ->setRequired(true),
             AssociationField::new('links', 'External links')
                 ->setFormTypeOptions([
                     'by_reference' => false,
@@ -47,7 +48,7 @@ class ProjectCrudController extends AbstractCrudController
                     'multiple' => true,
                     'choice_label' => 'name',
                     'required' => true
-                ]),
+                ])->setRequired(true),
             AssociationField::new('projectImages', 'Images')->onlyOnIndex(),
             CollectionField::new('Links', 'Create external links')
                 ->setEntryType(LinkType::class)

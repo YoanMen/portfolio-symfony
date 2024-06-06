@@ -31,7 +31,7 @@ class BlogCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', "Title"),
+            TextField::new('name', "Title")->setRequired(true),
             TextEditorField::new('detail', 'Article')->onlyOnIndex(),
             TextEditorField::new('detail', 'Article')->setTrixEditorConfig([
                 'blockAttributes' => [
@@ -41,7 +41,7 @@ class BlogCrudController extends AbstractCrudController
                 'css' => [
                     'attachment' => 'admin_file_field_attachment',
                 ],
-            ])
+            ])->setRequired(true)
                 ->onlyOnForms()
                 ->setColumns(12)->setNumOfRows(25),
             CollectionField::new('blogImages', 'Insert images')

@@ -24,8 +24,8 @@ class TechnologyCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Name')->setColumns(2),
-            ColorField::new('color', 'Color')->setColumns(1),
+            TextField::new('name', 'Name')->setColumns(2)->setRequired(true),
+            ColorField::new('color', 'Color')->setColumns(1)->setRequired(true),
         ];
     }
 }
