@@ -67,19 +67,19 @@ window.onload = () => {
     tabManager.setTabInteractive();
   }
 
-  function setPagination(page, maxPage) {
+  function setPagination(currentPage, maxPage) {
     let content = "";
 
     if (maxPage == 1) return;
     for (let index = 0; index < maxPage; index++) {
-      if (index + 1 == page) {
-        content += `<a data-page=${index + 1} class="page text-2xl" href="#">${
-          index + 1
-        }</a>`;
+      const page = index + 1;
+
+      if (page == currentPage) {
+        content += `<a aria-label="page ${page}" data-page=${page} 
+        class="page text-2xl" href="#">${page}</a>`;
       } else {
-        content += `<a data-page=${index + 1} class="page text-xl" href="#">${
-          index + 1
-        }</a>`;
+        content += `<a aria-label="page ${page}" data-page=${page} 
+        class="page text-xl" href="#">${page}</a>`;
       }
     }
 
