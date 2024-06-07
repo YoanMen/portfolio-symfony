@@ -28,6 +28,16 @@
   --button-link-hover: rgb(236, 238, 240);
   --button-link-active: rgb(230, 230, 230);
 }
+
+.detail h3 {
+  font-size: 20px;
+}
+
+.detail ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
 p,
 div,
 label,
