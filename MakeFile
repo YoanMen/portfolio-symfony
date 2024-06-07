@@ -2,7 +2,6 @@
 
 install: install 
 		 php bin/console d:m:m -n
-		 php bin/console dump-env prod
 		 rm -R public/assets
 		 composer install --no-dev --optimize-autoloader
 		 php bin/console tailwind:build

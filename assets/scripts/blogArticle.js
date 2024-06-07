@@ -62,7 +62,7 @@ export class Article {
       month[date.getMonth() + 1]
     } ${date.getDate()}, ${date.getFullYear()}`;
 
-    return `<article class="tab px-2 max-lg:px-0 py-8 border-color first:border-t-[1px] last:border-b-0  border-b-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">
+    return `<article class="tab px-2 max-lg:px-0 py-8 border-color first:border-t-[1px] border-b-[1px] border-l-0 border-r-0  transition-all duration-150 ease-in-out">
     <div class="flex justify-between items-center">
     <h3 class="text-blue font-medium text-2xl">
     ${this.blog.name}

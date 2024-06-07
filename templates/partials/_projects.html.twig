@@ -52,7 +52,7 @@
 					<ul name="links" class="flex gap-2 py-2">
 
 						{% for link in project.getLinks() %}
-							<li>
+							<li class="list-none">
 								<a class="link btn-primary bg-secondary " href=" {{ link.path }} " target="_blank">
 									{% if link.getLinkIcon() is not empty %}
 										<div class="text-color">
