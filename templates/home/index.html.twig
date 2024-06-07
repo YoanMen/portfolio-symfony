@@ -11,7 +11,7 @@
 
 
 	{# HERO SECTION #}
-	<section name="hero" class="relative fade w-full max-h-[960px] max-lg:flex-col-reverse h-screen pt-5 flex max-lg:justify-evenly  justify-around items-center flex-wrap max-md:px-2  max-w-[1600px] mx-auto">
+	<section name="hero" class="relative fade w-full max-h-[960px] max-lg:flex-col min-h-screen pt-5 flex max-lg:justify-evenly  justify-around items-center  max-md:px-2  max-w-[1600px] mx-auto">
 		<button class="absolute bottom-10  max-2xl:hidden btn-link show-js ">
 			<div class="text-color text-sm pr-2 font-light ">
 				See more
@@ -21,9 +21,9 @@
 			</svg>
 		</button>
 		<div>
-			<h1 class="font-bold text-7xl max-md:text-4xl pt-6 ">Hello World !
+			<h1 class="font-bold text-7xl max-sm:text-4xl pt-6 ">Hello World !
 			</h1>
-			<p class="text-4xl max-md:text-2xl font-[300] leading-tight">I’m
+			<p class="text-4xl max-sm:text-2xl font-[300] leading-tight">I’m
 				<strong class="font-bold">Yoan Ménard,</strong>
 				<br>
 				a
@@ -57,12 +57,12 @@
 				</li>
 			</ul>
 		</div>
-		<img class="m-8 bg-avatar bg-gray-900  max-md:h-64 max-md:w-64 h-[512px] w-[512px] relative inline-block  rounded-full border-2  border-color object-cover object-top" src="{{ asset('/images/hero_image.webp') }}" alt="">
+		<img class="m-8 bg-avatar bg-gray-900 max-sm:h-64 max-sm:w-64 max-xl:w-96 max-xl:h-96  h-[512px] w-[512px] relative inline-block  rounded-full border-2  border-color object-cover object-top" src="{{ asset('/images/hero_image.webp') }}" alt="">
 
 
 	</section>
 
-	<section name="about" id="about" class="section max-w-5xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color  border-[1px]">
+	<section name="about" id="about" class="section max-w-5xl w-full mx-auto  mt-10 xl:rounded  p-4 border-color border-[1px] max-lg:border-x-0">
 		<h2 class=" text-2xl flex items-center gap-2 mb-2">
 			<div class="">
 				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 24 24">
