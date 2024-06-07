@@ -37,22 +37,22 @@ window.onload = () => {
       }
     )
       .then((response) => response.json())
-      .catch(() => alert.error("Error get blogs"));
+      .catch(() => console.error("Error get blogs"));
 
     loadBlogs.classList.toggle("hidden");
+    if (response.success && response != null) {
+      setBlogs(response.data);
+      setPagination(response.page, response.maxPage);
 
-    if (response == null) return;
+      const carousels = document.querySelectorAll(".carousel-blog");
 
-    setBlogs(response.data);
-    await setPagination(response.page, response.maxPage);
-
-    //
-    const carousels = document.querySelectorAll(".carousel-blog");
-
-    carousels.forEach((carousel) => {
-      new Carousel(carousel);
-    });
-    listeningClickPageLink();
+      carousels.forEach((carousel) => {
+        new Carousel(carousel);
+      });
+      listeningClickPageLink();
+    } else {
+      console.error(response.error);
+    }
   }
 
   function setBlogs(data) {
@@ -67,7 +67,7 @@ window.onload = () => {
     tabManager.setTabInteractive();
   }
 
-  async function setPagination(page, maxPage) {
+  function setPagination(page, maxPage) {
     let content = "";
 
     if (maxPage == 1) return;

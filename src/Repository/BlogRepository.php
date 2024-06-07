@@ -28,4 +28,16 @@ class BlogRepository extends ServiceEntityRepository
             ->setParameter('search', $searchTerm)
             ->setMaxResults($limit));
     }
+
+    public function countBySearch(string $search): int
+    {
+        $searchTerm = '%' . $search . '%';
+
+        return $this->createQueryBuilder('r')
+            ->select('count(r.id)')
+            ->where('r.name LIKE :search OR r.detail LIKE :search')
+            ->setParameter('search', $searchTerm)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
