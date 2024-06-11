@@ -73,8 +73,6 @@ DirectoryIndex index.php
     </IfModule>
 </IfModule>
 
-
-Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://yoanmenard.com; img-src 'self' data:"
 Header set X-Frame-Options SAMEORIGIN
 Header set X-Content-Type-Options nosniff
 Header set Referrer-Policy strict-origin
