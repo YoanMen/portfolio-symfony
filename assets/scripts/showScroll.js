@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let scrollPosition = window.scrollY;
 
     if (scrollPosition > 0 && isVisible) {
-      console.log("ok");
       isVisible = false;
       showButton.classList.add("fade-out");
       showButton.classList.remove("fade");

@@ -4,5 +4,5 @@ install: install
 		 php bin/console d:m:m -n
 		 rm -R public/assets
 		 composer install --no-dev --optimize-autoloader
-		 php bin/console tailwind:build
+		 php bin/console tailwind:build --minify
 		 php bin/console asset-map:compile

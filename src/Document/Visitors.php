@@ -2,7 +2,6 @@
 
 namespace App\Document;
 
-use DateTime;
 use DateTimeImmutable;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;

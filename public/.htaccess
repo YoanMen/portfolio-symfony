@@ -43,7 +43,7 @@ DirectoryIndex index.php
     RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
 
     # Redirect to URI without front controller to prevent duplicate content
-    # (with and without `/index.php`). Only do this redirect on the initial
+    # (with and without `/indexhttps://yoanmenard.com/.php`). Only do this redirect on the initial
     # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
     # endless redirect loop (request -> rewrite to front controller ->
     # redirect -> request -> ...).
@@ -71,4 +71,13 @@ DirectoryIndex index.php
         RedirectMatch 307 ^/$ /index.php/
         # RedirectTemp cannot be used instead
     </IfModule>
+</IfModule>
+
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://yoanmenard.com; img-src 'self' data:"
+    Header set X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options nosniff
+    Header set Referrer-Policy strict-origin
+    Header set Permissions-Policy interest-cohort=()
 </IfModule>
