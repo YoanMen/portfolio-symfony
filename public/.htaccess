@@ -73,8 +73,4 @@ DirectoryIndex index.php
     </IfModule>
 </IfModule>
 
-Header set X-Frame-Options SAMEORIGIN
-Header set X-Content-Type-Options nosniff
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-Options -Indexes
