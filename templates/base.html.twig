@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Discover my web development journey! As I reconvert into a web developer with a focus on web mobility, explore my projects, skills, and experiences in building responsive and user-friendly digital solutions. From front-end to back-end development, let's connect and see how we can collaborate!">
-		<meta		http-equiv="Content-Security-Policy"content="default-src 'self'; img-src https://yoanmenard.com; child-src 'none';" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://yoanmenard.com; child-src 'none';"/>
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -13,7 +13,7 @@
 
 		{% block javascripts %}
 			{% block importmap %}
-				{{ importmap('app') }}
+				{{ importmap('app', {'nonce': csp_nonce('script')}) }}
 			{% endblock %}
 		{% endblock %}
 
