@@ -75,8 +75,6 @@ DirectoryIndex index.php
 
 Header set X-Frame-Options SAMEORIGIN
 Header set X-Content-Type-Options nosniff
-Header set Referrer-Policy strict-origin
-Header set Permissions-Policy interest-cohort=()
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
 Options -Indexes
