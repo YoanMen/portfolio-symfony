@@ -33,7 +33,7 @@ class ContactController extends AbstractController
         return new JsonResponse(['success' => true]);
       } catch (\Exception $e) {
 
-        return new JsonResponse(['success' => false, 'error' => $e->getMessage()]);
+        return new JsonResponse(['success' => false, 'error' => 'Internal error']);
       }
     } else {
 
